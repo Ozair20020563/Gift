@@ -1,589 +1,290 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday, Doha — My Universe ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg1:#0f172a;
-  --bg2:#1f2937;
-  --accent:#ff6b81;
-  --accent-2:#7c5cff;
-  --glass: rgba(255,255,255,0.04);
-  --card: rgba(255,255,255,0.03);
-  --max-width:1100px;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-  background:
-    radial-gradient(1000px 600px at 10% 10%, rgba(124,92,255,0.08), transparent 6%),
-    radial-gradient(800px 500px at 90% 90%, rgba(255,107,129,0.03), transparent 6%),
-    linear-gradient(180deg,var(--bg1),var(--bg2));
-  color:#e6eef8;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:36px 18px;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-}
-.wrap{width:100%;max-width:var(--max-width);margin:0 auto}
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.brand{font-weight:700;font-size:18px;display:flex;gap:10px;align-items:center}
-nav{display:flex;gap:10px}
-.btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:10px 14px;border-radius:12px;color:white;font-weight:600;cursor:pointer}
-.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-
-/* main card */
-main{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:16px;box-shadow:0 12px 36px rgba(2,6,23,0.6)}
-.hero{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;padding:18px;border-radius:12px}
-.hero-left h1{font-size:30px;margin:0 0 8px}
-.subtitle{opacity:0.9;margin:6px 0 12px}
-.typed{font-size:15px;line-height:1.6;color:#f0f7ff;min-height:56px}
-.hero-actions{display:flex;gap:10px;margin-top:12px}
-
-/* gallery */
-section{margin-top:22px}
-h2{margin:0 0 12px;font-size:18px}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
-.gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid rgba(255,255,255,0.03);transition:transform .35s, box-shadow .35s}
-.gallery-grid img:hover{transform:scale(1.06) translateY(-4px);box-shadow:0 14px 30px rgba(2,6,23,0.6)}
-
-/* carousel */
-.carousel{position:relative;display:flex;overflow:hidden;align-items:center;justify-content:center;margin-top:8px}
-.carousel-track{display:flex;transition:transform .45s ease}
-.carousel-slide{min-width:100%;display:flex;justify-content:center;gap:12px;padding:14px}
-.carousel-slide img{width:150px;height:150px;border-radius:12px;object-fit:cover;cursor:pointer;transition:transform .3s}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.06);border:0;color:white;font-size:22px;padding:8px 10px;border-radius:8px;cursor:pointer}
-.carousel-btn.prev{left:6px} .carousel-btn.next{right:6px}
-
-/* notes */
-.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.note-card{background:var(--card);padding:14px;border-radius:12px;cursor:pointer;min-height:140px;display:flex;flex-direction:column;justify-content:center;transition:transform .18s}
-.note-card:hover{transform:translateY(-6px)}
-.note-title{font-weight:700;margin-bottom:8px}
-.note-preview{opacity:0.85;font-size:14px}
-
-/* timeline */
-.timeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.event{background:var(--glass);padding:14px;border-radius:12px;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:center}
-.event .date{font-weight:700;font-size:16px;margin-bottom:8px}
-
-/* overlay modal */
-.overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999;opacity:1}
-.overlay.hidden{display:none}
-.modal-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));width:min(920px,96%);max-height:90vh;overflow:auto;border-radius:14px;padding:18px;position:relative;box-shadow:0 18px 40px rgba(2,6,23,0.7)}
-.modal-close{position:absolute;right:14px;top:10px;background:transparent;border:0;color:white;font-size:28px;cursor:pointer}
-
-/* image styles inside modal */
-.modal-image-wrap{display:flex;align-items:center;justify-content:center;padding:10px}
-.modal-image-wrap img{max-width:100%;border-radius:12px;box-shadow:0 14px 42px rgba(2,6,23,0.7)}
-
-/* animated backgrounds for surprise & notes */
-.animated-bg{
-  padding:18px;border-radius:10px;color:#041827;background:linear-gradient(135deg, rgba(255,255,255,0.98), rgba(250,240,255,0.97));
-  animation: bgPulse 6s ease-in-out infinite;
-}
-@keyframes bgPulse{
-  0%{filter:brightness(0.98) saturate(.98)}
-  50%{filter:brightness(1.04) saturate(1.05)}
-  100%{filter:brightness(0.98) saturate(.98)}
-}
-
-/* entrances for modal content */
-.anim-zoom { animation: zoomIn .6s ease both; }
-@keyframes zoomIn { from { transform:scale(.85); opacity:0 } to { transform:scale(1); opacity:1 } }
-
-.anim-slide-left { animation: slideInLeft .6s ease both; }
-@keyframes slideInLeft { from { transform:translateX(-40px); opacity:0 } to { transform:translateX(0); opacity:1 } }
-
-.anim-slide-right { animation: slideInRight .6s ease both; }
-@keyframes slideInRight { from { transform:translateX(40px); opacity:0 } to { transform:translateX(0); opacity:1 } }
-
-.anim-fade { animation: fadeIn .6s ease both; }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-/* small responsive */
-@media (max-width:880px){
-  .hero{grid-template-columns:1fr}
-  .carousel-slide img{width:110px;height:110px}
-  .gallery-grid img{height:96px}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ My Universe — Doha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-<div class="wrap">
-  <header>
-    <div class="brand">✨ <strong>My Universe — Doha</strong></div>
-    <nav>
-      <button class="btn secondary" id="musicBtn">Play music</button>
-      <button class="btn" id="celebrateBtn">Celebrate 🎉</button>
+    <div class="particles"></div>
+    <div class="floating-hearts"></div>
+    
+    <!-- Main Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">✨ My Universe — Doha</h1>
+            <p class="subtitle">Happy Birthday, My Biwi, Begum, Zojha 💖</p>
+            <p class="intro-text">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
+            
+            <div class="main-buttons">
+                <button class="celebrate-btn" onclick="startCelebration()">
+                    <i class="fas fa-birthday-cake"></i> Celebrate
+                </button>
+                <button class="surprise-btn" onclick="openSurprise()">
+                    <i class="fas fa-gift"></i> Open Your Surprise
+                </button>
+                <button class="love-notes-btn" onclick="scrollToLoveNotes()">
+                    <i class="fas fa-heart"></i> Read My Love Notes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Modal -->
+    <div id="celebrationModal" class="modal">
+        <div class="modal-content celebration-content">
+            <span class="close" onclick="closeCelebration()">&times;</span>
+            <div class="celebration-text">
+                <h2 class="birthday-title">🎉 Happy Birthday My Beautiful Doha! 🎂</h2>
+                <div class="birthday-message">
+                    <p>My dearest Doha, my beautiful biwi, my precious begum, my lovely zojha,</p>
+                    
+                    <p>Today is the most special day of the year because it's the day my universe was blessed with your presence. As I write these words, my heart overflows with emotions that no language can truly capture. You are not just my girlfriend, you are my soulmate, my best friend, my confidant, and the love of my life.</p>
+                    
+                    <p>From the moment I wake up until I close my eyes at night, you are the first and last thought in my mind. Your smile has the power to light up even my darkest days, and your laughter is the sweetest melody I've ever heard. When you call me by those cute names - babe, jaan, my love - my heart skips a beat every single time.</p>
+                    
+                    <p>You have brought so much joy, love, and meaning into my life. Before you, I never knew what true love felt like. You've shown me what it means to care for someone more than yourself, to dream of a future together, and to find happiness in the smallest moments we share. Whether we're talking for hours on video calls, sharing memes that make us laugh, or just enjoying comfortable silence together, every moment with you feels like a blessing.</p>
+                    
+                    <p>Your kindness touches everyone around you. The way you care for your family, your dedication to your studies, your dreams and ambitions - everything about you inspires me to become a better person. You push me to chase my dreams while being my biggest supporter. You believe in me even when I don't believe in myself.</p>
+                    
+                    <p>I love how you scrunch your nose when you laugh really hard, how you get excited about little things, how you worry about everyone you care about, and how you have this incredible ability to make everyone feel special. I love your morning voice when you're still sleepy, the way you think deeply about everything, and how you always try to see the good in people.</p>
+                    
+                    <p>On this special day, I want you to know that you deserve all the happiness in the world. You deserve to be celebrated not just today, but every single day. You deserve all your dreams to come true, all your wishes to be fulfilled, and all the love that your beautiful heart can hold.</p>
+                    
+                    <p>As you blow out your candles today, know that each flame represents a wish I have for you - for your happiness, your success, your health, and for our beautiful future together. I promise to stand by your side through every adventure, every challenge, and every joy that life brings our way.</p>
+                    
+                    <p>Thank you for being you, for loving me with such a pure and beautiful heart, for making me feel like the luckiest person alive. Thank you for your patience, your understanding, your forgiveness, and for choosing to share your life with me.</p>
+                    
+                    <p>Happy Birthday, my beautiful Doha! May this new year of your life be filled with endless joy, incredible adventures, amazing opportunities, and all the love your heart can hold. You are my today, my tomorrow, and my always.</p>
+                    
+                    <p>I love you more than words can express, more than the stars in the sky, more than all the love songs ever written. You are my everything, and I'm so grateful to call you mine.</p>
+                    
+                    <p>With all my love, today and forever,<br>Your devoted boyfriend, your biggest fan, your partner in crime, and your eternal admirer ❤️</p>
+                </div>
+            </div>
+            <div class="celebration-animation"></div>
+        </div>
+    </div>
+
+    <!-- Surprise Modal -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content surprise-content">
+            <span class="close" onclick="closeSurprise()">&times;</span>
+            <div class="surprise-animation">
+                <h2 class="surprise-title">🎁 Your Special Surprise! 🌟</h2>
+                <div class="surprise-message">
+                    <p>My darling Doha, my beautiful surprise awaits you!</p>
+                    
+                    <p>This website is just the beginning of your birthday celebration, but the real surprise is everything I have planned for you, not just today, but for our entire future together. You see, you've been my greatest surprise since the day we met, and every day with you brings new surprises that fill my heart with joy.</p>
+                    
+                    <p>Your surprise isn't just this website, though I've poured my heart into every pixel, every animation, every word written here. Your surprise is knowing that someone out there loves you beyond measure, thinks about you constantly, and dreams of making you smile every single day. Your surprise is having someone who remembers every little detail about you, who celebrates your achievements as if they were his own, and who finds joy in your happiness.</p>
+                    
+                    <p>I've been planning this for weeks, thinking about what would make you smile, what would show you just how much you mean to me. Every section of this website represents a piece of my heart that belongs to you. The morning pictures remind me how you brighten up my mornings with your messages. Our memories section holds all those precious moments we've shared, each one a treasure I keep close to my heart.</p>
+                    
+                    <p>But the biggest surprise, my love, is that this is just the beginning. I have so many more surprises planned for you - not just for your birthday, but for every special moment we'll share together. I want to surprise you with unexpected dates, with little gifts that remind you of inside jokes we share, with spontaneous adventures that we'll look back on and smile about years from now.</p>
+                    
+                    <p>Your surprise is also the promise I make to you today - that I will spend every day trying to make you as happy as you make me. I will surprise you with my love, my dedication, my commitment to being the best partner I can be for you. I will surprise you by never stopping to chase my dreams while supporting yours, by growing alongside you, by becoming the man you deserve.</p>
+                    
+                    <p>So open your heart to all the surprises life has in store for you, my beautiful Doha. You deserve every bit of magic, every moment of joy, every surprise that comes your way. And I promise to be there, creating surprises with you and for you, for as long as you'll have me.</p>
+                    
+                    <p>Happy Birthday, my sweetest surprise! 🎉💕</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="floating-nav">
+        <a href="#morning" class="nav-item" data-section="morning">
+            <i class="fas fa-sun"></i>
+            <span>Morning Cutiee</span>
+        </a>
+        <a href="#memories" class="nav-item" data-section="memories">
+            <i class="fas fa-heart"></i>
+            <span>Our Memories</span>
+        </a>
+        <a href="#love-notes" class="nav-item" data-section="love-notes">
+            <i class="fas fa-envelope-heart"></i>
+            <span>Love Notes</span>
+        </a>
+        <a href="#story" class="nav-item" data-section="story">
+            <i class="fas fa-book-heart"></i>
+            <span>Our Story</span>
+        </a>
     </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-left">
-        <h1 id="heroTitle">Happy Birthday, My Biwi, Begum, Zojha 💖</h1>
-        <p class="subtitle">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
-        <div class="typed" id="typed"></div>
-        <div class="hero-actions">
-          <button class="btn" id="openSurprise">Open Your Surprise</button>
-          <button class="btn secondary" id="openNotes">Read my love notes</button>
+    <!-- Morning Cutiee Section -->
+    <section id="morning" class="section morning-section">
+        <div class="container">
+            <h2 class="section-title">Morning Cutiee 🌸</h2>
+            <div class="photo-gallery">
+                <div class="photo-item" onclick="openPhoto('morning', 0)">
+                    <img src="https://images.unsplash.com/photo-1502810365585-56ffa361fdde?w=300&h=300&fit=crop" alt="Morning 1">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('morning', 1)">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=300&fit=crop" alt="Morning 2">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('morning', 2)">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616c9ce71da?w=300&h=300&fit=crop" alt="Morning 3">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('morning', 3)">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Morning 4">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="hero-right" style="display:flex;flex-direction:column;gap:12px;align-items:center">
-        <div style="width:320px;background:var(--card);padding:14px;border-radius:12px;text-align:center">
-          <h3 style="margin:0 0 6px">A tiny timeline of us</h3>
-          <div style="opacity:0.9;font-size:14px">6 Sep 2023 — The day we met<br>19 Oct — Your birthday</div>
-          <small style="opacity:0.75">Tip: click any card to open it with music & animation</small>
+    </section>
+
+    <!-- Our Memories Section -->
+    <section id="memories" class="section memories-section">
+        <div class="container">
+            <h2 class="section-title">Our Memories ❤️</h2>
+            <div class="photo-gallery">
+                <div class="photo-item" onclick="openPhoto('memories', 0)">
+                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=300&h=300&fit=crop" alt="Memory 1">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('memories', 1)">
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=300&h=300&fit=crop" alt="Memory 2">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('memories', 2)">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=300&fit=crop" alt="Memory 3">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openPhoto('memories', 3)">
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=300&fit=crop" alt="Memory 4">
+                    <div class="photo-overlay">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Morning Cutiee -->
-    <section id="gallerySection">
-      <h2>Morning Cutiee 🌸</h2>
-      <div class="gallery-grid" id="morningGallery"></div>
-
-      <h2 style="margin-top:20px">Our Memories ❤️</h2>
-      <div id="carouselSection">
-        <div class="carousel">
-          <button class="carousel-btn prev" id="prevBtn">❮</button>
-          <div class="carousel-track" id="carouselTrack"></div>
-          <button class="carousel-btn next" id="nextBtn">❯</button>
+    <!-- Love Notes Section -->
+    <section id="love-notes" class="section love-notes-section">
+        <div class="container">
+            <h2 class="section-title">Love Notes 💌</h2>
+            <div class="love-notes-grid">
+                <div class="love-note-item" onclick="openLoveNote('why-love')">
+                    <div class="note-icon">❤️</div>
+                    <h3>Why I Love You</h3>
+                </div>
+                <div class="love-note-item" onclick="openLoveNote('memory-keep')">
+                    <div class="note-icon">🌟</div>
+                    <h3>A Memory I Keep</h3>
+                </div>
+                <div class="love-note-item" onclick="openLoveNote('promise')">
+                    <div class="note-icon">💞</div>
+                    <h3>A Promise to You</h3>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Love Notes -->
-    <section id="notesSection">
-      <h2>Love Notes 💌</h2>
-      <div class="notes-grid" id="notesGrid"></div>
+    <!-- Our Story Section -->
+    <section id="story" class="section story-section">
+        <div class="container">
+            <h2 class="section-title">Our Story 🌹</h2>
+            <div class="story-timeline">
+                <div class="story-item" onclick="openStory('met')">
+                    <div class="story-date">6 Sep 2023</div>
+                    <div class="story-title">The Day We Met</div>
+                    <div class="story-icon">💫</div>
+                </div>
+                <div class="story-item" onclick="openStory('birthday')">
+                    <div class="story-date">19 Oct 2023</div>
+                    <div class="story-title">My Jaan's Birthday</div>
+                    <div class="story-icon">🎂</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Timeline -->
-    <section id="storySection">
-      <h2>Our Story 🌹</h2>
-      <div class="timeline" id="timeline"></div>
-    </section>
-  </main>
-</div>
+    <!-- Photo Modal -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content photo-modal-content">
+            <span class="close" onclick="closePhoto()">&times;</span>
+            <div class="photo-display">
+                <img id="modalPhoto" src="" alt="">
+                <div class="photo-animation-overlay"></div>
+            </div>
+        </div>
+    </div>
 
-<!-- overlay modal -->
-<div id="overlay" class="overlay hidden" aria-hidden="true">
-  <div class="modal-card anim-zoom" id="modalCard" role="dialog" aria-modal="true">
-    <button class="modal-close" id="closeModal">✕</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
+    <!-- Love Note Modal -->
+    <div id="loveNoteModal" class="modal">
+        <div class="modal-content love-note-modal-content">
+            <span class="close" onclick="closeLoveNote()">&times;</span>
+            <div id="loveNoteContent" class="love-note-content"></div>
+        </div>
+    </div>
 
-<audio id="audioPlayer" loop></audio>
-<canvas id="confettiCanvas" class="confetti"></canvas>
+    <!-- Story Modal -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content story-modal-content">
+            <span class="close" onclick="closeStory()">&times;</span>
+            <div id="storyContent" class="story-content"></div>
+        </div>
+    </div>
 
-<script>
-/* ---------- Configuration & nicknames ---------- */
-const nicknames = ["Biwi","Begum","Zojha","Jaan","My Galaxy","Roohi","Mohtarma","Cutiee","Patutiee","Lovey Dovey","Mera Dil","Meri Jaan","Meri Pyari","Meri Zindagi","Meri Saans","My Universe","My Darling","My Heart","My Angel","My Sunshine"];
+    <!-- Audio Elements -->
+    <audio id="celebrationAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/mpeg">
+    </audio>
+    <audio id="surpriseAudio" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/mpeg">
+    </audio>
+    <audio id="photoAudio1" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-01.wav" type="audio/mpeg">
+    </audio>
+    <audio id="photoAudio2" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-02.wav" type="audio/mpeg">
+    </audio>
+    <audio id="photoAudio3" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-03.wav" type="audio/mpeg">
+    </audio>
+    <audio id="photoAudio4" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-04.wav" type="audio/mpeg">
+    </audio>
+    <audio id="loveNoteAudio1" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/magic-chime-01.wav" type="audio/mpeg">
+    </audio>
+    <audio id="loveNoteAudio2" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/mpeg">
+    </audio>
+    <audio id="loveNoteAudio3" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/magic-chime-03.wav" type="audio/mpeg">
+    </audio>
+    <audio id="storyAudio1" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/positive-beeps-01.wav" type="audio/mpeg">
+    </audio>
+    <audio id="storyAudio2" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/positive-beeps-02.wav" type="audio/mpeg">
+    </audio>
 
-/* helper to pick music file for an index (wraps through 1..13) */
-function musicForIndex(idx){
-  // idx starting at 1 -> returns assets/music/musicN.mp3 (N between 1 and 13)
-  const n = ((idx - 1) % 13) + 1;
-  return `assets/music/music${n}.mp3`;
-}
-
-/* ---------- Morning Gallery (14 images) ---------- */
-const morningGallery = document.getElementById('morningGallery');
-for(let i=1;i<=14;i++){
-  const img = document.createElement('img');
-  img.src = `assets/morning${i}.jpg`;
-  img.alt = `morning ${i}`;
-  // assign a data-animation variant so modal shows different animation per image
-  img.dataset.anim = ['anim-zoom','anim-slide-left','anim-slide-right','anim-fade'][i % 4];
-  // music rotates
-  img.dataset.music = musicForIndex(i);
-  img.addEventListener('click', ()=> openImageModal(img.src, img.dataset.music, img.dataset.anim, `Morning Cutiee — ${i}`));
-  img.addEventListener('mousemove', (e)=> spawnTinyHeart(e, 8));
-  morningGallery.appendChild(img);
-}
-
-/* ---------- Carousel for 78 photos divided into sections (4-5 each) ---------- */
-const photos = [];
-for(let i=1;i<=78;i++) photos.push(`assets/photo${i}.jpg`);
-const sectionSize = 5; // 4-5 per group; using 5 to keep groups reasonable
-const sections = [];
-for(let i=0;i<photos.length;i+=sectionSize) sections.push(photos.slice(i, i+sectionSize));
-
-const carouselTrack = document.getElementById('carouselTrack');
-let currentSlide = 0;
-
-function renderSlide(index){
-  carouselTrack.innerHTML = '';
-  const slide = document.createElement('div');
-  slide.className = 'carousel-slide';
-  sections[index].forEach((p, j) => {
-    const el = document.createElement('img');
-    el.src = p;
-    el.alt = `memory ${index}-${j}`;
-    el.dataset.anim = ['anim-slide-left','anim-slide-right','anim-zoom','anim-fade'][(j+index)%4];
-    el.dataset.music = musicForIndex(index + j + 2); // pick some music per section+pos
-    el.addEventListener('click', ()=> openImageModal(el.src, el.dataset.music, el.dataset.anim, `Memory ${index+1} - ${j+1}`));
-    el.addEventListener('mousemove', (e)=> spawnTinyHeart(e, 7));
-    slide.appendChild(el);
-  });
-  carouselTrack.appendChild(slide);
-}
-renderSlide(currentSlide);
-document.getElementById('prevBtn').addEventListener('click', ()=>{
-  currentSlide = (currentSlide - 1 + sections.length) % sections.length;
-  renderSlide(currentSlide);
-});
-document.getElementById('nextBtn').addEventListener('click', ()=>{
-  currentSlide = (currentSlide + 1) % sections.length;
-  renderSlide(currentSlide);
-});
-
-/* ---------- Overlay / Modal handling ---------- */
-const overlay = document.getElementById('overlay');
-const modalCard = document.getElementById('modalCard');
-const modalContent = document.getElementById('modalContent');
-const audioPlayer = document.getElementById('audioPlayer');
-const confettiCanvas = document.getElementById('confettiCanvas');
-let confettiRunning = false;
-let confettiAnimId = null;
-
-function openImageModal(imgSrc, musicSrc, animClass='anim-zoom', title=''){
-  // show image with lovely framing and unique animation
-  modalContent.innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;">
-        <strong style="font-size:18px">${title}</strong>
-      </div>
-      <div class="modal-image-wrap ${animClass}">
-        <img src="${imgSrc}" alt="" />
-      </div>
-      <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end;">
-        <button class="btn secondary" id="closeInModal">Close</button>
-      </div>
-    </div>`;
-  overlay.classList.remove('hidden');
-  overlay.setAttribute('aria-hidden','false');
-  // animate modal card (reset classes)
-  modalCard.classList.remove('anim-zoom','anim-slide-left','anim-slide-right','anim-fade');
-  void modalCard.offsetWidth; // force reflow
-  modalCard.classList.add(animClass);
-  if(musicSrc){
-    audioPlayer.src = musicSrc;
-    audioPlayer.play().catch(()=>{/* autoplay may be blocked until user interacts; okay */});
-  }
-  document.getElementById('closeInModal').addEventListener('click', closeModal);
-}
-
-function openTextModal(htmlContent, musicSrc=null, anim='anim-zoom', title=''){
-  modalContent.innerHTML = `<div class="${anim} animated-bg">${htmlContent}</div>`;
-  overlay.classList.remove('hidden');
-  overlay.setAttribute('aria-hidden','false');
-  modalCard.classList.remove('anim-zoom','anim-slide-left','anim-slide-right','anim-fade');
-  void modalCard.offsetWidth;
-  modalCard.classList.add(anim);
-  if(musicSrc){
-    audioPlayer.src = musicSrc;
-    audioPlayer.play().catch(()=>{});
-  }
-}
-
-function closeModal(){
-  overlay.classList.add('hidden');
-  overlay.setAttribute('aria-hidden','true');
-  audioPlayer.pause();
-  audioPlayer.currentTime = 0;
-  stopConfetti();
-}
-
-document.getElementById('closeModal').addEventListener('click', closeModal);
-overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
-
-/* ---------- Hearts / tiny hearts spawn ---------- */
-function spawnTinyHeart(e, size=10){
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = e.clientX + 'px';
-  heart.style.top = e.clientY + 'px';
-  heart.style.fontSize = `${size + Math.random()*12}px`;
-  heart.innerHTML = '❤️';
-  document.body.appendChild(heart);
-  setTimeout(()=> heart.remove(), 3500);
-}
-// ambient hearts
-setInterval(()=> {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random()*window.innerWidth + 'px';
-  heart.style.top = window.innerHeight + 'px';
-  heart.style.fontSize = `${8 + Math.random()*20}px`;
-  heart.innerHTML = '❤️';
-  document.body.appendChild(heart);
-  setTimeout(()=> heart.remove(), 6000);
-}, 400);
-
-/* ---------- Surprise button (700+ words, animated) ---------- */
-document.getElementById('openSurprise').addEventListener('click', ()=>{
-  const longNote = `
-  <h2 style="margin-top:0">My Beloved — A Letter from My Heart</h2>
-  <p style="line-height:1.7;margin-bottom:12px;">
-  My sweetest ${nicknames.join(', ')}, my mera dil, my meri zindagi — when I try to put into words what you mean to me,
-  language becomes small and the heart grows loud. This little universe I made for you is an attempt to gather together
-  all the pieces of love we have woven since our first hello. I remember the night we first talked — a quiet screen
-  between us that felt like the warmest blanket. We shared dreams, silly thoughts, fears, and secrets. You laughed at
-  my jokes, you told me about the songs you loved, and in that conversation I discovered the most precious truth:
-  that a soul can recognize another and decide to stay.
-  </p>
-
-  <p style="line-height:1.7;margin-bottom:12px;">
-  Ever since, my life has been painted by your smiles. You are the morning light in my darkest day, the quiet
-  confidence that everything will be okay, the voice that calls me home. Each photo here holds a small miracle —
-  a laugh we shared in a message, a look you gave that made my heart skip, a memory of the day you told me a secret.
-  I created these pages so you could feel the rhythm of what you have given me: calm, purpose, joy, and that rare kind
-  of love that does not bargain with conditions. You are my Biwi, my Begum, my Zojha — names that taste like home to me.
-  </p>
-
-  <p style="line-height:1.7;margin-bottom:12px;">
-  When you open each image you will hear little parts of our soundtrack; each melody is a small memory of an evening
-  we shared, an idea we planned, a dream we wished on. Close your eyes and let the music bring back the warmth of
-  the moment. I promise to listen to your silences and celebrate your laughter. I promise to be patient on the days
-  we are tired, to be brave on the days we are scared, and to hold your hand as we build the life we have always
-  hoped for. My heart belongs to you, and in every corner of my thoughts there is your name — my Cutiee, my Patutiee,
-  my Lovey Dovey, my Roohi. If I could wrap the sky and present it to you, I would — but for now, I present this
-  universe, every picture a small star, every word a promise.
-  </p>
-
-  <p style="line-height:1.7;margin-bottom:12px;">
-  I love the way you make simple things feel special: the way you reply with a single emoji and my day becomes bright,
-  the way you say a word that makes me laugh, the way you put thought into the smallest gifts. You taught me patience,
-  and you taught me how complete life feels when shared. My life is a better story because you are in it. I look
-  forward to our reunion, to the day I can hold you without screens between us, to the mornings when I can make tea
-  for you and watch you smile. Until then, let these pages be the softest hug I can send from afar.
-  </p>
-
-  <p style="line-height:1.7;margin-bottom:12px;">
-  With all my love, forever and always — your Ozair. Meri Jaan, meri pyari, meri saans, my universe. 💖
-  </p>
-  `;
-  openTextModal(longNote, 'assets/music/music3.mp3', 'anim-slide-right', 'A Letter for You');
-});
-
-/* ---------- Read my love notes button scrolls to notes section ---------- */
-document.getElementById('openNotes').addEventListener('click', ()=>{
-  document.getElementById('notesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-/* ---------- Love Notes (3 notes >250 words each) ---------- */
-const notesData = [
-  {
-    id: 'why',
-    title: 'Why I love you ❤️',
-    music: 'assets/music/music4.mp3',
-    content: `My beloved ${nicknames.join(', ')} — this is a promise written in the language of my breath. There are a thousand small reasons why I love you, and each one is a quiet miracle: the way your laughter finds me even in the busiest day; the way you listen with your whole heart when I speak; the steady kindness in your eyes. I love you because you choose warmth over worry, you choose calm over haste, and you choose love in the simplest moments. When I picture the future I want, you are always there — smiling, supporting, and shining. You are my Biwi, my Begum, my Zojha, and in every role you become more beautiful to me. Every morning you teach me patience, every evening you teach me gratitude.
-
-    You have taught me to find joy in small things: a shared cup of tea over a video call, the silly memes we send each other at midnight, the way your name lights up my phone screen. Those tiny moments stitch together into something grand — a life where laughter is easy and comfort is home. I love how you see my flaws and love me anyway. I love the courage you show when the day is hard. I love the tenderness you give and the courage you inspire in me. I promise to be the person who tries each day to be worthy of your trust. You are my Meri Pyari, my Mera Dil, my Meri Zindagi, and forever my reason to smile.`
-  },
-  {
-    id: 'memory',
-    title: 'A memory I keep 🌟',
-    music: 'assets/music/music5.mp3',
-    content: `There are moments that stand like little lanterns in my memory — a late-night conversation that made me feel at home even though we were oceans apart, a shared silence that felt somehow brimming with meaning, the first time you said something that made me blush. One memory that I keep like a jewel is the night we shared our dreams. We spoke quietly about small hopes, about the foods we love, the places we want to travel to and the simple routines we imagine having together. That small night shaped everything — it was the night I realised how beautifully our hearts aligned.
-
-    Whenever I feel lost I go back to those early hours: your soft voice, the little jokes, the vulnerability in your words. I keep that memory not as something fixed and finished, but as a seed that keeps growing. Each new day, a shoot of memory rises from that seed — a new laugh, a new comfort, a new dream shared. You are my My Galaxy, my Roohi, my Patutiee — the one who turned what could have been a fleeting chat into an entire life built on affection and trust.`
-  },
-  {
-    id: 'promise',
-    title: 'A promise to you 💞',
-    music: 'assets/music/music6.mp3',
-    content: `My promise to you is long and simple: I promise to show up. I promise to be patient when the road is rough, to be joyful when the sun shines, to hold your hand when the night is cold, and to celebrate you in every victory. I promise that when you are tired, I will be your rest; when you are joyous, I will be your song. I promise to listen, to speak truth gently, and to work each day for the life we both dream of. You are my Cutiee, my Lovey Dovey, my Meri Saans — I will guard this love with tenderness and care.
-
-    We will create a home of laughter, small rituals, and shared coffees. We will learn from our mistakes and grow stronger from every storm. I promise to respect your dreams and stand beside you while you chase them. Above all, I promise that in every chapter of life you will find me there — loving, steady, and grateful that you chose me.`
-  }
-];
-
-const notesGrid = document.getElementById('notesGrid');
-notesData.forEach((n, idx) => {
-  const card = document.createElement('div');
-  card.className = 'note-card';
-  card.innerHTML = `<div class="note-title">${n.title}</div><div class="note-preview">Tap to open a long letter filled with my love for you.</div>`;
-  card.addEventListener('click', ()=> {
-    openTextModal(`<h2>${n.title}</h2><div style="line-height:1.7">${n.content.replace(/\n/g,'<br><br>')}</div>`, n.music, ['anim-slide-left','anim-slide-right','anim-zoom'][idx%3]);
-  });
-  notesGrid.appendChild(card);
-});
-
-/* ---------- Timeline: 6 Sep 2023 and 19 Oct (700+ words each) ---------- */
-const timelineData = [
-  {
-    date: '6 Sep 2023 — The Day We Met',
-    music: 'assets/music/music7.mp3',
-    content: `6 Sep 2023 was a day like any other until it became the day my life acquired a new center — you. I remember how the first hello felt like a small door opening; a modest message that carried an unexpected warmth. From that first conversation, we began to build a quiet architecture of trust and curiosity. We shared our favorite songs, our secret small worries, the silly parts of ourselves we often hide. Little by little, lines of text and voice notes stitched into a lasting companionship.
-
-    In the weeks that followed, we found comfort in each other’s presence even at a distance. Your laugh began to echo across my days; your words became the gentle music that eased the edges of every stress. We celebrated small wins — a successful presentation, a silly joke, a perfectly timed meme — and we held each other up through the tiring days. We learned to be patient and to communicate with tenderness. Each message strengthened the promise that we were building something that would not be broken by miles alone.
-
-    There is an intimacy that was born in those early days: vulnerable truths shared at midnight, hopes whispered into the quiet, dreams sketched out in the language of “one day.” You taught me how to be present, how to listen well, and how to celebrate the ordinary. The memory of those first months is not a single scene but a long, slow movie of small wonders — the voice notes, the jokes, the long messages, the silent understanding. It’s in that story that I keep my faith that we will build our life together. I imagine the mornings we will share, the tiny rituals we will create, the home we will fill with laughter. You turned what could have been a fleeting click into a life I long to live.
-
-    Today, every memory since that first hello is part of a map that leads to you. For every day of hardship, you were my comfort. For every happy hour, you were my reason to smile. I promise to keep choosing you, to hold you through storms, and to value the little things that deepen our love. You are my Biwi, my Begum, my Zojha, my Roohi — names that have grown to mean my every tomorrow. On this page I place these words so that our story is not merely a private song but a living promise that grows with every sunrise.`
-  },
-  {
-    date: '19 Oct — My Jaan\'s Birthday',
-    music: 'assets/music/music8.mp3',
-    content: `19 Oct is the day the world was gifted the bright, gentle soul I call my own. Every birthday is a reminder of the miracle of your life and a celebration of all the small joys you bring. On this day my wishes are simple and profound: I wish for your laughter to be abundant, for your worries to be few, for your dreams to find their path, and for our reunion — InshaAllah — to be a festival of love and closeness.
-
-    Your birthday is not a single moment but a whole story of love I want to write with you. I imagine a morning where I bring you breakfast, where our hands meet across the table, where our laughter fills the room. I imagine nights where we talk until sleep carries us away, holding each other close. I imagine a life where every birthday is sweeter because we have learned more about each other and loved more dearly.
-
-    The words I write today are not enough to hold all the wishes I carry for you, but know this: I will spend every day trying to give you the peace, joy, and steady love you deserve. I will stand with you, celebrate you, and protect the soft beautiful parts of you that I have been entrusted with. Happy Birthday, my my meri pyari, my every heartbeat. May your path be blessed with happiness and may our every step forward be together.`
-  }
-];
-
-const timelineEl = document.getElementById('timeline');
-timelineData.forEach((t, idx) => {
-  const box = document.createElement('div');
-  box.className = 'event';
-  box.innerHTML = `<div class="date">${t.date}</div><div style="opacity:.85">Tap to read the story & hear a song</div>`;
-  box.addEventListener('click', ()=> {
-    openTextModal(`<h2>${t.date}</h2><div style="line-height:1.7">${t.content.replace(/\n/g,'<br><br>')}</div>`, t.music, ['anim-zoom','anim-slide-right'][idx%2]);
-  });
-  timelineEl.appendChild(box);
-});
-
-/* ---------- Celebrate button: large 1000+ word note, music, confetti ---------- */
-document.getElementById('celebrateBtn').addEventListener('click', ()=>{
-  const birthdayText = `
-  <h2 style="margin-top:0">My Endless Birthday Love — A Long Letter</h2>
-  <div style="line-height:1.7">
-  <p>
-  My shining ${nicknames.join(', ')}, today I celebrate not just the day you were born, but the million quiet ways
-  you make life beautiful. I write this long letter with every small memory that fills my chest — each one a
-  string of light that makes our universe brighter. I remember the smile that first stole my attention, the small
-  joke that made us both laugh, the late-night words that braided our hearts together. Since the first time we
-  spoke, you became the echo in my happiest moments and the quiet comfort in my hardest ones.
-  </p>
-
-  <p>
-  I celebrate you for your tenderness and your courage. I celebrate the way you care — not showy or loud but deep,
-  steady, and true. I celebrate the way you place thought and love into little things: the messages you send,
-  the songs you suggest, the way your eyes soften in photos. Those little things are the foundation of a life I
-  want to share. My Biwi, my Begum, my Zojha — you are a gift beyond measure. Your presence has reshaped everything
-  kind and true in my world. I want to give you a thousand mornings of light, a thousand nights of peace.
-  </p>
-
-  <p>
-  On this birthday I make promises not only of romance but of partnership. I promise to work with you, to build a
-  home where laughter lives, to create rituals that matter: small breakfasts that become beloved habits, lazy
-  Sunday walks, the comfort of shared chores that somehow become our sweetest times. I promise to keep learning how
-  to give you the language you need when words are hard, to be the shoulder you lean on when life gets heavy, and
-  to be the mirror that reflects your strength.
-  </p>
-
-  <p>
-  I celebrate your dreams and the way your eyes light up talking about them. I want to be the one who clears the
-  path for those dreams, who supports the experiments, who holds you when you stumble and cheers louder than anyone
-  when you succeed. You deserve applause for the quiet bravery you show each day — for facing the world with grace,
-  humor, and honesty. I will be there with quiet gratitude, cheering and supporting every ambition you embrace.
-  </p>
-
-  <p>
-  I celebrate the little everyday things we will gather: cups of tea in the morning, shared playlists, the inside
-  jokes that only we understand; the inevitable mundane that becomes extraordinary because we do it together.
-  My Cutiee, my Patutiee, my Lovey Dovey — these are the small stitches in the blanket we will wrap ourselves
-  in on hard evenings. Life will ask things of us; but together, I believe we will answer with patience, kindness,
-  and laughter.
-  </p>
-
-  <p>
-  And so, on your birthday I wish for you peace, growth, radiant health, and the most tender joy. I wish for the
-  fulfillment of the dreams you have whispered, and for new dreams to take root. I wish for us to find our home
-  — InshaAllah — and in that home, to build the kind of life that makes us sing in the rain. I wish for us to
-  look back many years from now and smile at everything we built: friendships, a family, the countless small
-  memories that make up a life.
-  </p>
-
-  <p>
-  Today I light a candle in my heart for you. I promise my constant love, respect, and patience. I am proud of you
-  every day and humbled by the privilege of loving you. May Allah bless you with the sweetest of years, with growth,
-  with laughter, and with the love you so deeply deserve. Happy Birthday, my meri pyari, meri saans, my meri zindagi.
-  I love you beyond the words and forever.
-  </p>
-  </div>
-  `;
-  openTextModal(birthdayText, 'assets/music/happy_birthday.mp3', 'anim-zoom', 'Happy Birthday, My Love');
-  startConfetti();
-});
-
-/* ---------- confetti implementation (start/stop) ---------- */
-let confettiPieces = [];
-function startConfetti(){
-  if(confettiRunning) return;
-  confettiRunning = true;
-  const canvas = confettiCanvas;
-  const ctx = canvas.getContext('2d');
-  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  resize(); window.addEventListener('resize', resize);
-  confettiPieces = [];
-  for(let i=0;i<200;i++){
-    confettiPieces.push({
-      x: Math.random()*canvas.width,
-      y: Math.random()*-canvas.height,
-      r: 4 + Math.random()*8,
-      vx: -2 + Math.random()*4,
-      vy: 2 + Math.random()*4,
-      color: `hsl(${Math.random()*360},80%,60%)`
-    });
-  }
-  (function draw(){
-    if(!confettiRunning) { ctx.clearRect(0,0,canvas.width,canvas.height); return; }
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    confettiPieces.forEach(p=>{
-      ctx.save();
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.ellipse(p.x,p.y,p.r,p.r*0.7,0,0,Math.PI*2);
-      ctx.fill();
-      ctx.restore();
-      p.x += p.vx; p.y += p.vy; p.vy += 0.02;
-      if(p.y > canvas.height + 20){ p.y = -20; p.x = Math.random()*canvas.width; p.vy = 2 + Math.random()*4; }
-    });
-    confettiAnimId = requestAnimationFrame(draw);
-  })();
-}
-
-function stopConfetti(){
-  confettiRunning = false;
-  if(confettiAnimId) cancelAnimationFrame(confettiAnimId);
-  confettiAnimId = null;
-}
-
-/* ---------- small typed effect in hero ---------- */
-const typedEl = document.getElementById('typed');
-const typedLines = [
-  `Meri Jaan — every picture, every note, every song is for you.`,
-  `Open your surprise, my Cutiee. Feel the music, remember our moments.`,
-  `Happy Birthday, my Meri Zindagi — I love you more than words.`
-];
-let tI=0, cI=0;
-function typedLoop(){
-  if(cI < typedLines[tI].length){
-    typedEl.textContent += typedLines[tI][cI++];
-    setTimeout(typedLoop, 28);
-  } else {
-    setTimeout(()=>{ typedEl.textContent=''; cI=0; tI=(tI+1)%typedLines.length; typedLoop(); }, 2200);
-  }
-}
-typedLoop();
-
-/* ---------- keyboard escape to close modal ---------- */
-document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
-
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
