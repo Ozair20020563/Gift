@@ -1,85 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday Doha — My Universe ❤️</title>
-  <link href="css/style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Jaan 💞</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <header class="site-header">
-      <div class="brand">✨ My Universe — Doha</div>
-      <nav>
-        <button class="btn secondary" id="musicBtn">Play music</button>
-        <button class="btn" id="celebrateBtn">Celebrate 🎉</button>
-      </nav>
-    </header>
-
-    <main class="card">
-      <section class="hero">
-        <div class="hero-left">
-          <h1 id="heroTitle">Happy Birthday, My Biwi, Begum, Zojha 💖</h1>
-          <p class="subtitle">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
-          <div id="typed" class="typed"></div>
-          <div class="hero-actions">
-            <button class="btn" id="openSurprise">Open Your Surprise</button>
-            <button class="btn secondary" id="openNotes">Read my love notes</button>
-          </div>
-        </div>
-
-        <aside class="hero-right">
-          <div class="mini-card">
-            <h4>A tiny timeline</h4>
-            <div>6 Sep 2023 — The day we met</div>
-            <div>19 Oct — Your birthday</div>
-          </div>
-          <div class="mini-card accent">Your surprise is private — only for your eyes</div>
-        </aside>
-      </section>
-
-      <!-- Morning Gallery -->
-      <section id="gallerySection">
-        <h2>Morning Cutiee 🌸</h2>
-        <div id="morningGallery" class="gallery-grid" aria-live="polite"></div>
-
-        <h2 style="margin-top:20px">Our Memories ❤️</h2>
-        <div class="carousel">
-          <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">❮</button>
-          <div id="carouselTrack" class="carousel-track" role="list"></div>
-          <button class="carousel-btn next" id="nextBtn" aria-label="Next">❯</button>
-        </div>
-      </section>
-
-      <!-- Notes -->
-      <section id="notesSection">
-        <h2>Love Notes 💌</h2>
-        <div id="notesGrid" class="notes-grid" aria-live="polite"></div>
-      </section>
-
-      <!-- Story -->
-      <section id="storySection">
-        <h2>Our Story 🌹</h2>
-        <div id="timeline" class="timeline" aria-live="polite"></div>
-      </section>
-
-      <footer class="footer">Made with ❤️ by Ozair — Happy Birthday Doha</footer>
-    </main>
-  </div>
-
-  <!-- Modal / Overlay -->
-  <div id="overlay" class="overlay hidden" aria-hidden="true">
-    <div id="modalCard" class="modal-card" role="dialog" aria-modal="true">
-      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
-      <div id="modalBody" class="modal-body"></div>
+  <div class="container">
+    <h1 class="title">Happy Birthday, My Universe 💖</h1>
+    <div class="buttons">
+      <button id="celebrateBtn">🎉 Celebrate</button>
+      <button id="surpriseBtn">💌 Open Your Surprise</button>
+      <button id="notesBtn">💞 Read My Love Notes</button>
+      <button id="morningBtn">🌸 Morning Cutiee</button>
+      <button id="memoriesBtn">❤️ Our Memories</button>
+      <button id="storyBtn">📖 Our Story</button>
     </div>
   </div>
 
-  <!-- Audio & confetti canvas -->
-  <audio id="audioPlayer" loop preload="auto"></audio>
-  <canvas id="confettiCanvas" class="confetti"></canvas>
+  <!-- Modal for sections -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div id="modalContent" class="modal-content"></div>
+  </div>
 
-  <script src="js/script.js"></script>
+  <canvas id="celebrationCanvas"></canvas>
+
+  <script src="script.js"></script>
 </body>
 </html>
