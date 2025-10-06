@@ -1,290 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ My Universe — Doha</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Doha — My Universe ❤️</title>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="particles"></div>
-    <div class="floating-hearts"></div>
-    
-    <!-- Main Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="main-title">✨ My Universe — Doha</h1>
-            <p class="subtitle">Happy Birthday, My Biwi, Begum, Zojha 💖</p>
-            <p class="intro-text">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
-            
-            <div class="main-buttons">
-                <button class="celebrate-btn" onclick="startCelebration()">
-                    <i class="fas fa-birthday-cake"></i> Celebrate
-                </button>
-                <button class="surprise-btn" onclick="openSurprise()">
-                    <i class="fas fa-gift"></i> Open Your Surprise
-                </button>
-                <button class="love-notes-btn" onclick="scrollToLoveNotes()">
-                    <i class="fas fa-heart"></i> Read My Love Notes
-                </button>
-            </div>
+  <div class="wrap">
+    <header class="site-header">
+      <div class="brand">✨ My Universe — Doha</div>
+      <nav>
+        <button class="btn secondary" id="musicBtn">Play music</button>
+        <button class="btn" id="celebrateBtn">Celebrate 🎉</button>
+      </nav>
+    </header>
+
+    <main class="card">
+      <section class="hero">
+        <div class="hero-left">
+          <h1 id="heroTitle">Happy Birthday, My Biwi, Begum, Zojha 💖</h1>
+          <p class="subtitle">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
+          <div id="typed" class="typed"></div>
+          <div class="hero-actions">
+            <button class="btn" id="openSurprise">Open Your Surprise</button>
+            <button class="btn secondary" id="openNotes">Read my love notes</button>
+          </div>
         </div>
+
+        <aside class="hero-right">
+          <div class="mini-card">
+            <h4>A tiny timeline</h4>
+            <div>6 Sep 2023 — The day we met</div>
+            <div>19 Oct — Your birthday</div>
+          </div>
+          <div class="mini-card accent">Your surprise is private — only for your eyes</div>
+        </aside>
+      </section>
+
+      <!-- Morning Gallery -->
+      <section id="gallerySection">
+        <h2>Morning Cutiee 🌸</h2>
+        <div id="morningGallery" class="gallery-grid" aria-live="polite"></div>
+
+        <h2 style="margin-top:20px">Our Memories ❤️</h2>
+        <div class="carousel">
+          <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">❮</button>
+          <div id="carouselTrack" class="carousel-track" role="list"></div>
+          <button class="carousel-btn next" id="nextBtn" aria-label="Next">❯</button>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section id="notesSection">
+        <h2>Love Notes 💌</h2>
+        <div id="notesGrid" class="notes-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- Story -->
+      <section id="storySection">
+        <h2>Our Story 🌹</h2>
+        <div id="timeline" class="timeline" aria-live="polite"></div>
+      </section>
+
+      <footer class="footer">Made with ❤️ by Ozair — Happy Birthday Doha</footer>
+    </main>
+  </div>
+
+  <!-- Modal / Overlay -->
+  <div id="overlay" class="overlay hidden" aria-hidden="true">
+    <div id="modalCard" class="modal-card" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
+      <div id="modalBody" class="modal-body"></div>
     </div>
+  </div>
 
-    <!-- Celebration Modal -->
-    <div id="celebrationModal" class="modal">
-        <div class="modal-content celebration-content">
-            <span class="close" onclick="closeCelebration()">&times;</span>
-            <div class="celebration-text">
-                <h2 class="birthday-title">🎉 Happy Birthday My Beautiful Doha! 🎂</h2>
-                <div class="birthday-message">
-                    <p>My dearest Doha, my beautiful biwi, my precious begum, my lovely zojha,</p>
-                    
-                    <p>Today is the most special day of the year because it's the day my universe was blessed with your presence. As I write these words, my heart overflows with emotions that no language can truly capture. You are not just my girlfriend, you are my soulmate, my best friend, my confidant, and the love of my life.</p>
-                    
-                    <p>From the moment I wake up until I close my eyes at night, you are the first and last thought in my mind. Your smile has the power to light up even my darkest days, and your laughter is the sweetest melody I've ever heard. When you call me by those cute names - babe, jaan, my love - my heart skips a beat every single time.</p>
-                    
-                    <p>You have brought so much joy, love, and meaning into my life. Before you, I never knew what true love felt like. You've shown me what it means to care for someone more than yourself, to dream of a future together, and to find happiness in the smallest moments we share. Whether we're talking for hours on video calls, sharing memes that make us laugh, or just enjoying comfortable silence together, every moment with you feels like a blessing.</p>
-                    
-                    <p>Your kindness touches everyone around you. The way you care for your family, your dedication to your studies, your dreams and ambitions - everything about you inspires me to become a better person. You push me to chase my dreams while being my biggest supporter. You believe in me even when I don't believe in myself.</p>
-                    
-                    <p>I love how you scrunch your nose when you laugh really hard, how you get excited about little things, how you worry about everyone you care about, and how you have this incredible ability to make everyone feel special. I love your morning voice when you're still sleepy, the way you think deeply about everything, and how you always try to see the good in people.</p>
-                    
-                    <p>On this special day, I want you to know that you deserve all the happiness in the world. You deserve to be celebrated not just today, but every single day. You deserve all your dreams to come true, all your wishes to be fulfilled, and all the love that your beautiful heart can hold.</p>
-                    
-                    <p>As you blow out your candles today, know that each flame represents a wish I have for you - for your happiness, your success, your health, and for our beautiful future together. I promise to stand by your side through every adventure, every challenge, and every joy that life brings our way.</p>
-                    
-                    <p>Thank you for being you, for loving me with such a pure and beautiful heart, for making me feel like the luckiest person alive. Thank you for your patience, your understanding, your forgiveness, and for choosing to share your life with me.</p>
-                    
-                    <p>Happy Birthday, my beautiful Doha! May this new year of your life be filled with endless joy, incredible adventures, amazing opportunities, and all the love your heart can hold. You are my today, my tomorrow, and my always.</p>
-                    
-                    <p>I love you more than words can express, more than the stars in the sky, more than all the love songs ever written. You are my everything, and I'm so grateful to call you mine.</p>
-                    
-                    <p>With all my love, today and forever,<br>Your devoted boyfriend, your biggest fan, your partner in crime, and your eternal admirer ❤️</p>
-                </div>
-            </div>
-            <div class="celebration-animation"></div>
-        </div>
-    </div>
+  <!-- Audio & confetti canvas -->
+  <audio id="audioPlayer" loop preload="auto"></audio>
+  <canvas id="confettiCanvas" class="confetti"></canvas>
 
-    <!-- Surprise Modal -->
-    <div id="surpriseModal" class="modal">
-        <div class="modal-content surprise-content">
-            <span class="close" onclick="closeSurprise()">&times;</span>
-            <div class="surprise-animation">
-                <h2 class="surprise-title">🎁 Your Special Surprise! 🌟</h2>
-                <div class="surprise-message">
-                    <p>My darling Doha, my beautiful surprise awaits you!</p>
-                    
-                    <p>This website is just the beginning of your birthday celebration, but the real surprise is everything I have planned for you, not just today, but for our entire future together. You see, you've been my greatest surprise since the day we met, and every day with you brings new surprises that fill my heart with joy.</p>
-                    
-                    <p>Your surprise isn't just this website, though I've poured my heart into every pixel, every animation, every word written here. Your surprise is knowing that someone out there loves you beyond measure, thinks about you constantly, and dreams of making you smile every single day. Your surprise is having someone who remembers every little detail about you, who celebrates your achievements as if they were his own, and who finds joy in your happiness.</p>
-                    
-                    <p>I've been planning this for weeks, thinking about what would make you smile, what would show you just how much you mean to me. Every section of this website represents a piece of my heart that belongs to you. The morning pictures remind me how you brighten up my mornings with your messages. Our memories section holds all those precious moments we've shared, each one a treasure I keep close to my heart.</p>
-                    
-                    <p>But the biggest surprise, my love, is that this is just the beginning. I have so many more surprises planned for you - not just for your birthday, but for every special moment we'll share together. I want to surprise you with unexpected dates, with little gifts that remind you of inside jokes we share, with spontaneous adventures that we'll look back on and smile about years from now.</p>
-                    
-                    <p>Your surprise is also the promise I make to you today - that I will spend every day trying to make you as happy as you make me. I will surprise you with my love, my dedication, my commitment to being the best partner I can be for you. I will surprise you by never stopping to chase my dreams while supporting yours, by growing alongside you, by becoming the man you deserve.</p>
-                    
-                    <p>So open your heart to all the surprises life has in store for you, my beautiful Doha. You deserve every bit of magic, every moment of joy, every surprise that comes your way. And I promise to be there, creating surprises with you and for you, for as long as you'll have me.</p>
-                    
-                    <p>Happy Birthday, my sweetest surprise! 🎉💕</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="floating-nav">
-        <a href="#morning" class="nav-item" data-section="morning">
-            <i class="fas fa-sun"></i>
-            <span>Morning Cutiee</span>
-        </a>
-        <a href="#memories" class="nav-item" data-section="memories">
-            <i class="fas fa-heart"></i>
-            <span>Our Memories</span>
-        </a>
-        <a href="#love-notes" class="nav-item" data-section="love-notes">
-            <i class="fas fa-envelope-heart"></i>
-            <span>Love Notes</span>
-        </a>
-        <a href="#story" class="nav-item" data-section="story">
-            <i class="fas fa-book-heart"></i>
-            <span>Our Story</span>
-        </a>
-    </nav>
-
-    <!-- Morning Cutiee Section -->
-    <section id="morning" class="section morning-section">
-        <div class="container">
-            <h2 class="section-title">Morning Cutiee 🌸</h2>
-            <div class="photo-gallery">
-                <div class="photo-item" onclick="openPhoto('morning', 0)">
-                    <img src="https://images.unsplash.com/photo-1502810365585-56ffa361fdde?w=300&h=300&fit=crop" alt="Morning 1">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('morning', 1)">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=300&fit=crop" alt="Morning 2">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('morning', 2)">
-                    <img src="https://images.unsplash.com/photo-1494790108755-2616c9ce71da?w=300&h=300&fit=crop" alt="Morning 3">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('morning', 3)">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Morning 4">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Memories Section -->
-    <section id="memories" class="section memories-section">
-        <div class="container">
-            <h2 class="section-title">Our Memories ❤️</h2>
-            <div class="photo-gallery">
-                <div class="photo-item" onclick="openPhoto('memories', 0)">
-                    <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=300&h=300&fit=crop" alt="Memory 1">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('memories', 1)">
-                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=300&h=300&fit=crop" alt="Memory 2">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('memories', 2)">
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=300&fit=crop" alt="Memory 3">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <div class="photo-item" onclick="openPhoto('memories', 3)">
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=300&h=300&fit=crop" alt="Memory 4">
-                    <div class="photo-overlay">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Love Notes Section -->
-    <section id="love-notes" class="section love-notes-section">
-        <div class="container">
-            <h2 class="section-title">Love Notes 💌</h2>
-            <div class="love-notes-grid">
-                <div class="love-note-item" onclick="openLoveNote('why-love')">
-                    <div class="note-icon">❤️</div>
-                    <h3>Why I Love You</h3>
-                </div>
-                <div class="love-note-item" onclick="openLoveNote('memory-keep')">
-                    <div class="note-icon">🌟</div>
-                    <h3>A Memory I Keep</h3>
-                </div>
-                <div class="love-note-item" onclick="openLoveNote('promise')">
-                    <div class="note-icon">💞</div>
-                    <h3>A Promise to You</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Story Section -->
-    <section id="story" class="section story-section">
-        <div class="container">
-            <h2 class="section-title">Our Story 🌹</h2>
-            <div class="story-timeline">
-                <div class="story-item" onclick="openStory('met')">
-                    <div class="story-date">6 Sep 2023</div>
-                    <div class="story-title">The Day We Met</div>
-                    <div class="story-icon">💫</div>
-                </div>
-                <div class="story-item" onclick="openStory('birthday')">
-                    <div class="story-date">19 Oct 2023</div>
-                    <div class="story-title">My Jaan's Birthday</div>
-                    <div class="story-icon">🎂</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Photo Modal -->
-    <div id="photoModal" class="modal">
-        <div class="modal-content photo-modal-content">
-            <span class="close" onclick="closePhoto()">&times;</span>
-            <div class="photo-display">
-                <img id="modalPhoto" src="" alt="">
-                <div class="photo-animation-overlay"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Love Note Modal -->
-    <div id="loveNoteModal" class="modal">
-        <div class="modal-content love-note-modal-content">
-            <span class="close" onclick="closeLoveNote()">&times;</span>
-            <div id="loveNoteContent" class="love-note-content"></div>
-        </div>
-    </div>
-
-    <!-- Story Modal -->
-    <div id="storyModal" class="modal">
-        <div class="modal-content story-modal-content">
-            <span class="close" onclick="closeStory()">&times;</span>
-            <div id="storyContent" class="story-content"></div>
-        </div>
-    </div>
-
-    <!-- Audio Elements -->
-    <audio id="celebrationAudio" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/mpeg">
-    </audio>
-    <audio id="surpriseAudio" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/mpeg">
-    </audio>
-    <audio id="photoAudio1" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-01.wav" type="audio/mpeg">
-    </audio>
-    <audio id="photoAudio2" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-02.wav" type="audio/mpeg">
-    </audio>
-    <audio id="photoAudio3" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-03.wav" type="audio/mpeg">
-    </audio>
-    <audio id="photoAudio4" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-04.wav" type="audio/mpeg">
-    </audio>
-    <audio id="loveNoteAudio1" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-01.wav" type="audio/mpeg">
-    </audio>
-    <audio id="loveNoteAudio2" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.wav" type="audio/mpeg">
-    </audio>
-    <audio id="loveNoteAudio3" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/magic-chime-03.wav" type="audio/mpeg">
-    </audio>
-    <audio id="storyAudio1" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/positive-beeps-01.wav" type="audio/mpeg">
-    </audio>
-    <audio id="storyAudio2" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/positive-beeps-02.wav" type="audio/mpeg">
-    </audio>
-
-    <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
