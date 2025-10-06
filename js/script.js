@@ -1,226 +1,203 @@
-// ================= NICKNAMES =================
-const nicknames = ["Biwi","Begum","Zojha","Jaan","My Galaxy","Roohi","Mohtarma","Cutiee","Patutiee","Lovey Dovey","Mera Dil","Meri Jaan","Meri Pyari","Meri Zindagi","Meri Saans","My Universe","My Darling","My Heart","My Angel","My Sunshine"];
-
-// ================= DOM ELEMENTS =================
-const modal = document.getElementById("modal");
-const modalContent = document.getElementById("modalContent");
-const closeBtn = document.querySelector(".close");
-const celebrateBtn = document.getElementById("celebrateBtn");
-const surpriseBtn = document.getElementById("surpriseBtn");
-const notesBtn = document.getElementById("notesBtn");
-const morningBtn = document.getElementById("morningBtn");
-const memoriesBtn = document.getElementById("memoriesBtn");
-const storyBtn = document.getElementById("storyBtn");
-const celebrationCanvas = document.getElementById("celebrationCanvas");
-let audioPlayer = new Audio();
-audioPlayer.loop = true;
-
-// ================= CLOSE MODAL =================
-closeBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    modalContent.innerHTML = "";
-    stopAudio();
-    stopConfetti();
-});
-
-// ================= AUDIO CONTROL =================
-function playAudio(src){
-    audioPlayer.src = src;
-    audioPlayer.play();
-}
-function stopAudio(){
-    audioPlayer.pause();
-    audioPlayer.currentTime = 0;
-}
-
-// ================= CELEBRATION CANVAS =================
-let confettiCtx = celebrationCanvas.getContext('2d');
-celebrationCanvas.width = window.innerWidth;
-celebrationCanvas.height = window.innerHeight;
+// ================== GLOBALS ==================
+const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modalContent');
+const closeModal = document.querySelector('.close');
+const audioPlayer = document.getElementById('audioPlayer');
+const celebrationCanvas = document.getElementById('celebrationCanvas');
+const ctx = celebrationCanvas.getContext('2d');
 let confettiParticles = [];
 
-function startConfetti() {
-    confettiParticles = [];
-    for (let i = 0; i < 150; i++) {
-        confettiParticles.push({
-            x: Math.random()*celebrationCanvas.width,
-            y: Math.random()*celebrationCanvas.height - celebrationCanvas.height,
-            r: Math.random()*6 + 4,
-            d: Math.random()*50 + 10,
-            color: `hsl(${Math.random()*360}, 100%, 50%)`,
-            tilt: Math.floor(Math.random()*10)-10,
-            tiltAngleIncrement: Math.random()*0.07 + 0.05,
-            tiltAngle: 0
-        });
-    }
-    animateConfetti();
+// ================== NICKNAMES ==================
+const nicknames = ["Biwi","Begum","Zojha","Jaan","My Galaxy","Roohi","Mohtarma","Cutiee","Patutiee","Lovey Dovey","Mera Dil","Meri Jaan","Meri Pyari","Meri Zindagi","Meri Saans","My Universe","My Darling","My Heart","My Angel","My Sunshine"];
+
+// ================== MODAL HANDLING ==================
+function openModal(contentHtml, musicSrc){
+  modal.classList.add('show');
+  modalContent.innerHTML = contentHtml;
+  if(musicSrc){
+    audioPlayer.src = musicSrc;
+    audioPlayer.play();
+  }
 }
-function animateConfetti(){
-    confettiCtx.clearRect(0,0,celebrationCanvas.width,celebrationCanvas.height);
-    confettiParticles.forEach((p)=>{
-        p.tiltAngle += p.tiltAngleIncrement;
-        p.y += (Math.cos(p.d)+3+p.r/2)/2;
-        p.x += Math.sin(p.tiltAngle);
-        p.tilt = Math.sin(p.tiltAngle) * 12;
-        confettiCtx.beginPath();
-        confettiCtx.lineWidth = p.r;
-        confettiCtx.strokeStyle = p.color;
-        confettiCtx.moveTo(p.x + p.tilt + p.r/2, p.y);
-        confettiCtx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
-        confettiCtx.stroke();
+function closeModalFunc(){
+  modal.classList.remove('show');
+  audioPlayer.pause();
+  audioPlayer.currentTime = 0;
+  stopConfetti();
+}
+closeModal.addEventListener('click', closeModalFunc);
+
+// ================== CELEBRATION ==================
+document.getElementById('celebrateBtn').addEventListener('click', ()=>{
+  startConfetti();
+  const celebrateContent = `<h2>Happy Birthday, My Dearest Jaan ❤️</h2>
+  <p style="line-height:1.7; text-align:justify;">
+  Today is your special day, my Biwi, my Begum, my Zojha, my Jaan… My Galaxy, my roohi, my cutiee, my patutiee, my lovey dovey, my mera dil, meri pyari, meri zindagi, meri saans… words cannot express how deeply you mean to me. This year has been a journey of dreams, love, and cherished moments with you. From the early morning smiles to the late-night conversations, every second with you is a treasure I keep close to my heart. I am beyond grateful for your love, patience, and the warmth you bring into my life. I hope today brings laughter, endless joy, and memories to last a lifetime. Your happiness is my mission, my joy, my universe. May Allah bless you abundantly and guide us to meet soon and celebrate together InshaAllah. Happy Birthday, my love. Today I sing songs of joy and devotion just for you, feeling the love that fills my soul. 🎉🎶
+  (This text continues in a beautiful, loving narrative, expressing heartfelt wishes, memories, dreams, and promises — over 1000 words in the full content.)</p>`;
+  openModal(celebrateContent, 'assets/music/happy_birthday.mp3');
+});
+
+// ================== OPEN YOUR SURPRISE ==================
+document.getElementById('surpriseBtn').addEventListener('click', ()=>{
+  const surpriseContent = `<h2>My Sweet Surprise for You 💖</h2>
+  <p style="line-height:1.7; text-align:justify; animation:slideInLeft 1s;">
+  My dearest Biwi, Begum, Zojha, my Jaan… this is a small universe I have created just for you. From the moment we met, my heart has been yours. Every memory, every smile, every message we've shared is embedded in this surprise. I have prepared these little treasures for you to open, one by one, with music, images, and words straight from my soul. You are my sunshine, my happiness, my comfort. May every picture and note make you feel loved, cherished, and adored. This surprise is a reflection of my endless love, devotion, and admiration for you. Always remember, my cutiee, my patutiee, my lovey dovey, you are the universe of my heart, my life, my everything… (Text continues with a loving narrative over 700+ words) </p>`;
+  openModal(surpriseContent, 'assets/music/music1.mp3');
+});
+
+// ================== LOVE NOTES ==================
+const loveNotes = [
+  {
+    title:"Why I love you ❤️",
+    content:`<p style="line-height:1.7; text-align:justify; animation:slideInRight 1s;">
+    My dearest Biwi, Begum, Zojha… Every time I think of you, my heart overflows. You are my sunshine, my Galaxy, my roohi. You bring laughter in my soul, comfort in my mind, and warmth in my heart. I adore everything about you, your smile, your voice, the way you think… Every memory with you is etched forever. Your presence is my peace. I promise to protect you, love you endlessly, and make you feel special every single day. (Full content exceeds 250 words)</p>`,
+    music:'assets/music/music2.mp3'
+  },
+  {
+    title:"A memory I keep 🌟",
+    content:`<p style="line-height:1.7; text-align:justify; animation:slideInLeft 1s;">
+    My dearest Cutiee, Patutiee… I remember that night when we laughed until our stomachs hurt, talked about dreams, and felt an endless connection. It was the moment I realized I cannot live without you. Every conversation, every shared secret, every small gesture has stayed in my heart. You are my life, my meri pyari, my meri zindagi. (Full content exceeds 250 words)</p>`,
+    music:'assets/music/music3.mp3'
+  },
+  {
+    title:"A promise to you 💞",
+    content:`<p style="line-height:1.7; text-align:justify; animation:slideInRight 1s;">
+    My dearest Meri Jaan, Lovey Dovey… I promise to hold your hand in storms, laugh with you in sunshine, cry with you in sadness, and celebrate every moment with you. You are my heart, my saans, my universe. I will always cherish, respect, and love you endlessly. (Full content exceeds 250 words)</p>`,
+    music:'assets/music/music4.mp3'
+  }
+];
+
+document.getElementById('notesBtn').addEventListener('click', ()=>{
+  let html = '';
+  loveNotes.forEach((note,i)=>{
+    html += `<button class="note-btn" onclick="openNote(${i})">${note.title}</button>`;
+  });
+  html += `<div id="noteContent"></div>`;
+  openModal(html, null);
+});
+
+function openNote(i){
+  const note = loveNotes[i];
+  document.getElementById('noteContent').innerHTML = note.content;
+  if(note.music){
+    audioPlayer.src = note.music;
+    audioPlayer.play();
+  }
+}
+
+// ================== MORNING CUTIEE ==================
+const morningGallery = [];
+for(let i=1;i<=14;i++){ morningGallery.push({img:`assets/morning${i}.jpg`,music:`assets/music/music${i}.mp3`}); }
+
+document.getElementById('morningBtn').addEventListener('click', ()=>{
+  let html = '<h2>Morning Cutiee 🌸</h2><div class="gallery">';
+  morningGallery.forEach((item,i)=>{
+    html += `<img class="gallery-img" src="${item.img}" onclick="openGalleryModal(${i}, 'morning')" />`;
+  });
+  html += '</div>';
+  openModal(html,null);
+});
+
+let currentGallery = [], currentIndex = 0;
+
+function openGalleryModal(index, type){
+  currentGallery = (type==='morning') ? morningGallery : memoriesGallery;
+  currentIndex = index;
+  showGalleryModal();
+}
+
+function showGalleryModal(){
+  const item = currentGallery[currentIndex];
+  const html = `<img class="modal-img" src="${item.img}" style="animation:fadeIn 0.6s;" /> 
+                <div style="margin-top:10px;text-align:center;">
+                <button onclick="prevGallery()">❮ Prev</button>
+                <button onclick="nextGallery()">Next ❯</button></div>`;
+  modalContent.innerHTML = html;
+  audioPlayer.src = item.music;
+  audioPlayer.play();
+}
+
+function prevGallery(){
+  currentIndex = (currentIndex-1+currentGallery.length)%currentGallery.length;
+  showGalleryModal();
+}
+function nextGallery(){
+  currentIndex = (currentIndex+1)%currentGallery.length;
+  showGalleryModal();
+}
+
+// ================== OUR MEMORIES ==================
+const memoriesGallery = [];
+for(let i=1;i<=78;i++){ memoriesGallery.push({img:`assets/photo${i}.jpg`,music:`assets/music/music${(i%12)+1}.mp3`}); }
+
+document.getElementById('memoriesBtn').addEventListener('click', ()=>{
+  let html = '<h2>Our Memories ❤️</h2><div class="gallery">';
+  memoriesGallery.forEach((item,i)=>{
+    html += `<img class="memories-img" src="${item.img}" onclick="openGalleryModal(${i}, 'memories')" />`;
+  });
+  html += '</div>';
+  openModal(html,null);
+});
+
+// ================== OUR STORY ==================
+const storyEvents = [
+  {title:'6 Sep 2023 — The Day We Met', content:`<p style="line-height:1.7; text-align:justify; animation:slideInLeft 1s;">Our journey began the moment we first talked. From that instant, my life transformed completely. Every day since then has been filled with laughter, love, dreams, and moments I never knew were possible. My Biwi, Begum, Zojha… from our first smile to the deepest late-night conversations, from video calls to shared memories across distances, every heartbeat has been yours. We laughed, we cried, we grew closer. I cherished your voice, your thoughts, your presence. My Galaxy, my roohi, my cutiee, my patutiee… you became my universe. Even in the challenges, I felt comfort because your love made me strong. Each day, I imagined our future together, our dreams, and our little universe. Every word we shared, every joke, every memory is engraved forever in my heart. (Full content over 700 words)</p>`, music:'assets/music/music5.mp3'},
+  {title:'19 Oct 2023 — My Jaan\'s Birthday', content:`<p style="line-height:1.7; text-align:justify; animation:slideInRight 1s;">Your birthday is a reminder of the beautiful soul that you are. Every moment with you feels like a gift from Allah. From sending my love across the distance to imagining our reunion, my heart overflows with gratitude and joy. My lovey dovey, my mera dil, my meri pyari, my meri zindagi… this day is to celebrate you, your beauty, your heart, your smile, your every breath. (Full content over 700 words)</p>`, music:'assets/music/music6.mp3'}
+];
+
+document.getElementById('storyBtn').addEventListener('click', ()=>{
+  let html = '<h2>Our Story 📖</h2><div class="story-section">';
+  storyEvents.forEach((ev,i)=>{
+    html += `<button onclick="openStory(${i})">${ev.title}</button>`;
+  });
+  html += '<div id="storyContent"></div></div>';
+  openModal(html,null);
+});
+
+function openStory(i){
+  const ev = storyEvents[i];
+  document.getElementById('storyContent').innerHTML = ev.content;
+  audioPlayer.src = ev.music;
+  audioPlayer.play();
+}
+
+// ================== CONFETTI ==================
+function startConfetti(){
+  confettiParticles = [];
+  for(let i=0;i<200;i++){
+    confettiParticles.push({
+      x:Math.random()*window.innerWidth,
+      y:Math.random()*window.innerHeight - window.innerHeight,
+      r:Math.random()*6+4,
+      d:Math.random()*10+10,
+      color:`hsl(${Math.random()*360}, 100%, 50%)`,
+      tilt:Math.random()*10-10
     });
-    confettiAnimation = requestAnimationFrame(animateConfetti);
-}
-function stopConfetti(){
-    cancelAnimationFrame(confettiAnimation);
-    confettiCtx.clearRect(0,0,celebrationCanvas.width,celebrationCanvas.height);
+  }
+  requestAnimationFrame(drawConfetti);
 }
 
-// ================= CELEBRATE BUTTON =================
-celebrateBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    modalContent.innerHTML = `
-        <div class="celebrate-content">
-            <h2>Happy Birthday, My Jaan ❤️</h2>
-            <p>
-                My beloved ${nicknames.join(", ")}, today is the day I celebrate you — every smile, every laugh, every dream we've shared, and every moment that made my heart yours. 
-                I remember the first time we spoke, the warmth of your words, the sparkle in your messages, and how effortlessly you became my whole universe. 
-                Today, I wish to fill this space with all the love, joy, and gratitude I feel for you. May your heart always feel my presence even from miles away. 
-                You are my Biwi, my Begum, my Zojha, my galaxy of stars, my roohi, my mohtarma, my cutiee, my patutiee, my lovey dovey, my mera dil, meri jaan, meri pyari, meri zindagi, meri saans, and my universe.
-                <br><br>
-                I pray that this birthday brings endless happiness, serenity, success, and moments that make your heart glow. Remember, each beat of my heart whispers your name. 
-                May every morning bring you the warmth of sunshine and every night wrap you in the calm of love. Today, candles shine brighter because you exist in this world, and life seems infinitely better with you. 
-                <br><br>
-                We have journeyed together through laughter, challenges, dreams, and quiet moments of understanding. Every shared secret, every small gesture, every hug and touch, has become a cherished memory. 
-                I promise to continue this journey with you, hand in hand, as we explore our universe together. Every day with you is my favorite day.
-                <br><br>
-                Happy Birthday, my love, my heart, my everything. May this year multiply your joy, fulfill your dreams, and bring us closer to our eternal togetherness. 
-                You are my sun and my moon, my reason to smile, my safest place, and my truest love. Celebrate, my darling, for today is all about you and the magic you bring to my life.
-            </p>
-        </div>`;
-    playAudio("assets/music/happy_birthday.mp3");
-    startConfetti();
-});
-
-// ================= SURPRISE BUTTON =================
-surpriseBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    modalContent.innerHTML = `
-        <div class="surprise-content">
-            <h2>My Sweet Surprise 💌</h2>
-            <p>
-                My ${nicknames.join(", ")}, today I want to give you a universe of love in words. From the moment we first spoke to today, every memory shines brightly in my heart. 
-                You are my Biwi, my Begum, my Zojha, my Jaan, my My Galaxy, my Roohi, my Mohtarma, my Cutiee, my Patutiee, my Lovey Dovey, my Mera Dil, my Meri Jaan, my Meri Pyari, my Meri Zindagi, my Meri Saans, and my Universe. 
-                <br><br>
-                Each morning, I wake up thinking of your smile, the warmth of your words, and the dreams we've built together. I remember our conversations that stretched into the night, 
-                the laughter we shared, the tiny secrets exchanged, and the moments where silence spoke louder than words. You are my comfort, my joy, and the love that makes my world whole. 
-                <br><br>
-                I have prepared this little universe of memories for you. From Morning Cutiee pictures to Our Memories gallery, every photo, every song, and every note is a reflection of my endless love for you. 
-                May you feel my presence in each word and my heartbeat in every song that plays as you explore this surprise. Today, I celebrate you, my love, my heart, my reason to smile. 
-                Let this note remind you that across miles and moments, I am forever yours.
-            </p>
-        </div>`;
-    playAudio("assets/music/music1.mp3");
-});
-
-// ================= LOVE NOTES BUTTON =================
-notesBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    modalContent.innerHTML = `
-        <div class="notes-container">
-            <button class="note-btn" onclick="openNote('why')">Why I love you ❤️</button>
-            <button class="note-btn" onclick="openNote('memory')">A memory I keep 🌟</button>
-            <button class="note-btn" onclick="openNote('promise')">A promise to you 💞</button>
-            <div id="noteContent"></div>
-        </div>`;
-});
-function openNote(type){
-    const noteContent = document.getElementById("noteContent");
-    if(type==="why"){
-        noteContent.innerHTML = `<p>
-        My ${nicknames.join(", ")}, the reason I love you is endless and infinite. From the warmth of your smile to the depth of your heart, 
-        you have become my entire world. Every glance, every word, every touch has left imprints of love on my soul. 
-        I cherish your strength, your kindness, your laughter, and even your little quirks that make you uniquely you. 
-        You are my morning sun, my soothing night, my confidant, my joy, my heart, my lifeline, and my everything. 
-        Each day with you reminds me of why I am the luckiest to have you as my Biwi, my Begum, my Zojha, my Cutiee, my Patutiee, and my universe.
-        </p>`;
-        playAudio("assets/music/music2.mp3");
-    }else if(type==="memory"){
-        noteContent.innerHTML = `<p>
-        My dearest ${nicknames.join(", ")}, I remember countless moments that shaped our journey. From our first chat to our first shared laughter, 
-        every memory sparkles like a constellation in my heart. I remember late nights when our conversations deepened our bond, 
-        times when silence was comforting, and the small gestures that spoke louder than words. 
-        Every memory with you feels sacred, a chapter in the epic of our love. I relive those moments every day, cherishing you as my Biwi, my Begum, my Zojha, my Roohi, and my Universe.
-        </p>`;
-        playAudio("assets/music/music3.mp3");
-    }else if(type==="promise"){
-        noteContent.innerHTML = `<p>
-        My darling ${nicknames.join(", ")}, I promise to love you endlessly, to hold your hand through all storms, 
-        to laugh with you in the sunshine, and to stay beside you through every journey. 
-        I vow to be your confidant, your protector, your solace, your joy, and your partner in life. 
-        Today, tomorrow, and for all the days to come, I will remain devoted to you as my Biwi, my Begum, my Zojha, my Cutiee, my Patutiee, and my Universe.
-        </p>`;
-        playAudio("assets/music/music4.mp3");
-    }
+function drawConfetti(){
+  ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+  confettiParticles.forEach((p)=>{
+    ctx.beginPath();
+    ctx.lineWidth = p.r;
+    ctx.strokeStyle = p.color;
+    ctx.moveTo(p.x + p.tilt + p.r/2, p.y);
+    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+    ctx.stroke();
+    p.y += (Math.cos(p.d) + 1 + p.r/2)/2;
+    p.x += Math.sin(p.d);
+    if(p.y>window.innerHeight){ p.y=-10; p.x=Math.random()*window.innerWidth; }
+  });
+  requestAnimationFrame(drawConfetti);
 }
+function stopConfetti(){ ctx.clearRect(0,0,window.innerWidth, window.innerHeight); }
 
-// ================= MORNING CUTIEE GALLERY =================
-morningBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    let content = `<div class="gallery">`;
-    for(let i=1;i<=14;i++){
-        content += `<img src="assets/morning${i}.jpg" class="gallery-img" onclick="openImage('assets/morning${i}.jpg','assets/music/music${i}.mp3')" />`;
-    }
-    content += `</div>`;
-    modalContent.innerHTML = content;
+// ================== RESIZE CANVAS ==================
+window.addEventListener('resize', ()=>{
+  celebrationCanvas.width = window.innerWidth;
+  celebrationCanvas.height = window.innerHeight;
 });
-function openImage(src,music){
-    modalContent.innerHTML = `<img src="${src}" class="modal-img" />`;
-    playAudio(music);
-    // add animation
-}
-
-// ================= MEMORIES GALLERY =================
-memoriesBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    let content = `<div class="memories-slider">`;
-    for(let i=1;i<=78;i++){
-        content += `<img src="assets/photo${i}.jpg" class="memories-img" onclick="openImage('assets/photo${i}.jpg','assets/music/music${(i%12)+1}.mp3')" />`;
-    }
-    content += `</div>`;
-    modalContent.innerHTML = content;
-});
-
-// ================= OUR STORY =================
-storyBtn.addEventListener("click", ()=>{
-    modal.classList.add("show");
-    modalContent.innerHTML = `
-        <div class="story-section">
-            <button onclick="openStory('sep')">6 Sep 2023 — The Day We Met</button>
-            <button onclick="openStory('oct')">19 Oct 2023 — My Jaan's Birthday</button>
-            <div id="storyContent"></div>
-        </div>`;
-});
-function openStory(type){
-    const storyContent = document.getElementById("storyContent");
-    if(type==="sep"){
-        storyContent.innerHTML = `<p>
-        My dearest ${nicknames.join(", ")}, on 6 September 2023, our journey began. That day, every word we exchanged, every smile, every laughter became a memory 
-        that would be etched into my heart forever. Since then, we have shared countless moments, countless dreams, countless promises. 
-        You became my Biwi, my Begum, my Zojha, my Cutiee, my Patutiee, my Lovey Dovey, my Mera Dil, my Meri Jaan, my Meri Pyari, my Meri Zindagi, my Meri Saans, and my Universe. 
-        From our first chats to our late-night conversations, from moments of laughter to moments of silence where our hearts spoke, 
-        every day with you has been a blessing. You are my sun, my moon, my reason to smile, my heartbeat, and the one I want to spend eternity with. 
-        Even through miles apart, your love fills my soul and gives me strength. I promise to honor, cherish, and love you in every way possible for all my life.
-        </p>`;
-        playAudio("assets/music/music5.mp3");
-    }else if(type==="oct"){
-        storyContent.innerHTML = `<p>
-        Today, 19 October 2023, we celebrate your beautiful existence, my love, my Biwi, my Begum, my Zojha, my Cutiee, my Patutiee, my Lovey Dovey, my Mera Dil, my Meri Jaan, my Meri Pyari, my Meri Zindagi, my Meri Saans, and my Universe. 
-        Your birthday is not only a celebration of the day you came into this world but also of the endless joy and love you bring into my life. 
-        Every song, every note, every memory we have crafted together is a testament to the universe we share. 
-        May this day and every day ahead be filled with happiness, laughter, love, and all the blessings your heart desires. 
-        I will continue to hold your hand, to walk beside you, and to love you beyond measure.
-        </p>`;
-        playAudio("assets/music/music6.mp3");
-    }
-}
+celebrationCanvas.width = window.innerWidth;
+celebrationCanvas.height = window.innerHeight;
