@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday, Doha — My Universe ❤️</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Happy Birthday, Doha — My Universe</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Global heart background & celebration canvases are handled by JS -->
+  <!-- background canvases (hearts + confetti) -->
   <canvas id="bgHeartsCanvas" class="bg-canvas" aria-hidden="true"></canvas>
   <canvas id="confettiCanvas" class="bg-canvas" aria-hidden="true"></canvas>
 
@@ -43,19 +43,19 @@
     <footer class="footer">Made with ❤️ by Ozair — Happy Birthday Doha</footer>
   </div>
 
-  <!-- Modal overlay -->
+  <!-- Global modal -->
   <div id="overlay" class="overlay hidden" aria-hidden="true">
     <div id="modalCard" class="modal-card" role="dialog" aria-modal="true">
       <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
-      <div id="modalBody" class="modal-body"></div>
+      <div id="modalBody" class="modal-body" tabindex="0"></div>
 
-      <!-- next/prev for images (always present but hidden when not used) -->
+      <!-- gallery nav (hidden unless used) -->
       <button id="galleryPrev" class="gallery-nav prev" aria-label="Previous image">‹</button>
       <button id="galleryNext" class="gallery-nav next" aria-label="Next image">›</button>
     </div>
   </div>
 
-  <!-- audio used for section music (kept outside modals) -->
+  <!-- audio used for section music -->
   <audio id="audioPlayer" loop preload="auto"></audio>
 
   <script src="js/script.js"></script>

@@ -1,22 +1,23 @@
-/* ================= Global & Layout ================= */
+/* style.css - responsive, romantic theme */
+
+/* root colors */
 :root{
-  --bg1:#0f172a;
-  --bg2:#1f2937;
-  --accent:#ff6b81;
-  --accent-2:#7c5cff;
+  --bg1:#071024;
+  --bg2:#0f172a;
+  --accent1:#ff6b81;
+  --accent2:#7c5cff;
   --card: rgba(255,255,255,0.03);
   --glass: rgba(255,255,255,0.04);
   --text:#e6eef8;
-  --soft-pink: rgba(255,107,129,0.08);
 }
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
+
+/* reset */
+*{box-sizing:border-box} html,body{height:100%;margin:0}
 body{
-  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
   background: linear-gradient(180deg,var(--bg1),var(--bg2));
   color:var(--text);
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
   padding:18px;
   display:flex;justify-content:center;align-items:flex-start;
 }
@@ -39,42 +40,35 @@ h1#heroTitle{font-size:30px;margin:6px 0 8px}
 
 /* menu grid */
 .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:12px;margin-top:12px}
-.menu-btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;padding:14px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 26px rgba(124,92,255,0.12);transition:transform .18s,box-shadow .18s}
+.menu-btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;padding:14px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 26px rgba(124,92,255,0.12);transition:transform .18s,box-shadow .18s}
 .menu-btn:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(124,92,255,0.18)}
-@media(max-width:860px){ .menu-grid{grid-template-columns:repeat(2,1fr)} .menu-btn{padding:12px} }
+@media(max-width:860px){ .menu-grid{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:480px){ .menu-grid{grid-template-columns:1fr} }
 
-/* footer */
-.footer{text-align:center;margin-top:16px;opacity:.8;font-size:13px}
-
-/* ================= Overlay / Modal ================= */
+/* overlay / modal */
 .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:50;backdrop-filter:blur(6px)}
 .overlay.hidden{display:none}
-.modal-card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px;max-width:920px;width:94%;max-height:92vh;overflow:auto;box-shadow:0 28px 80px rgba(2,6,23,0.7)}
-.modal-close{position:fixed;right:16px;top:16px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:white;font-size:20px;padding:8px 12px;border-radius:10px;cursor:pointer;z-index:60}
+.modal-card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px;max-width:960px;width:94%;max-height:92vh;overflow:auto;box-shadow:0 28px 80px rgba(2,6,23,0.7)}
+.modal-close{position:fixed;right:16px;top:16px;background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;color:white;font-size:20px;padding:8px 12px;border-radius:10px;cursor:pointer;z-index:60}
 .modal-body{color:var(--text);line-height:1.7}
-.modal-body .animated-bg{padding:14px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,240,255,0.96));color:#051428}
+.animated-bg{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,240,255,0.96));color:#051428}
 
-/* gallery thumbnails */
+/* gallery thumbnails / modal image */
 .gallery-grid, .memories-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:10px}
-.gallery-grid img, .memories-grid img{width:100%;height:110px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s, box-shadow .2s}
+.gallery-grid img, .memories-grid img{width:100%;height:110px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .gallery-grid img:hover, .memories-grid img:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-
-/* modal image (large view) */
 .modal-img{display:block;margin:8px auto;border-radius:12px;max-width:100%;height:auto;max-height:calc(100vh - 220px);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
 
-/* gallery nav buttons (colorful hearts theme) */
-.gallery-nav{position:fixed;top:50%;transform:translateY(-50%);background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:white;font-size:26px;padding:12px 14px;border-radius:12px;cursor:pointer;z-index:60;box-shadow:0 12px 30px rgba(0,0,0,0.5)}
+/* gallery nav heart buttons */
+.gallery-nav{position:fixed;top:50%;transform:translateY(-50%);background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;color:white;font-size:26px;padding:12px 14px;border-radius:12px;cursor:pointer;z-index:60;box-shadow:0 12px 30px rgba(0,0,0,0.5)}
 .gallery-nav.prev{left:12px}
 .gallery-nav.next{right:12px}
 
-/* note buttons inside modal */
-.note-btn{display:block;width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;margin:8px 0;font-weight:700;cursor:pointer}
+/* note & story button inside modal */
+.note-btn{display:block;width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;margin:8px 0;font-weight:700;cursor:pointer}
+.story-btn{display:block;padding:10px 12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;margin:10px 0;cursor:pointer}
 
-/* story buttons */
-.story-btn{display:block;padding:10px 12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;margin:10px 0;cursor:pointer}
-
-/* small decorative hearts (used in note headers) */
+/* small decorative heart inline */
 .heart-inline{display:inline-block;margin:0 6px;color:#ff6b81}
 
 /* responsive tweaks */
