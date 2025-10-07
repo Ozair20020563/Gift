@@ -7,74 +7,56 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Global heart background & celebration canvases are handled by JS -->
+  <canvas id="bgHeartsCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="confettiCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+
   <div class="wrap">
     <header class="site-header">
       <div class="brand">✨ My Universe — Doha</div>
       <div class="header-right">
-        <button id="musicBtn" class="pill">Play music</button>
-        <button id="celebrateBtn" class="pill primary">Celebrate 🎉</button>
+        <button id="stopVisualBtn" class="pill" title="Stop celebration visuals" hidden>💤 Stop Celebration</button>
       </div>
     </header>
 
-    <main class="card">
+    <main class="card" id="mainCard" role="main">
       <section class="hero">
-        <div class="hero-left">
-          <h1 id="heroTitle">Happy Birthday, My Biwi, Begum, Zojha 💖</h1>
+        <div class="hero-center">
+          <h1 id="heroTitle">Happy Birthday, My Universe 💖</h1>
           <p class="subtitle">To my meri pyari, meri zindagi — open your little universe of memories and surprises.</p>
-          <div id="typed" class="typed"></div>
-          <div class="hero-actions">
-            <button id="openSurprise" class="btn">Open Your Surprise</button>
-            <button id="openNotes" class="btn outline">Read my love notes</button>
-          </div>
-        </div>
-        <aside class="hero-right">
-          <div class="mini-card">
-            <div class="tiny">A tiny timeline of us</div>
-            <div class="muted">6 Sep 2023 — First chat<br/>19 Oct — Your birthday</div>
-          </div>
-          <div class="mini-card accent">Your surprise is private — only for your eyes</div>
-        </aside>
-      </section>
 
-      <section id="gallerySection">
-        <h2>Morning Cutiee 🌸</h2>
-        <div id="morningGallery" class="gallery-grid"></div>
+          <div class="menu-grid">
+            <button class="menu-btn" id="celebrateBtn">🎉 Celebrate</button>
+            <button class="menu-btn" id="openSurprise">💌 Open Your Surprise</button>
+            <button class="menu-btn" id="openNotes">💞 Read My Love Notes</button>
+            <button class="menu-btn" id="openMorning">🌸 Morning Cutiee</button>
+            <button class="menu-btn" id="openMemories">❤️ Our Memories</button>
+            <button class="menu-btn" id="openStory">📖 Our Story</button>
+          </div>
 
-        <h2 style="margin-top:20px">Our Memories ❤️</h2>
-        <div id="memoriesWrapper" class="carousel">
-          <button id="prevBtn" class="carousel-btn prev" aria-label="Previous">❮</button>
-          <div id="carouselTrack" class="carousel-track"></div>
-          <button id="nextBtn" class="carousel-btn next" aria-label="Next">❯</button>
+          <div id="typed" class="typed small"></div>
+          <p class="hint">Click any section to open — music plays only while a section is open.</p>
         </div>
       </section>
-
-      <section id="notesSection">
-        <h2>Love Notes 💌</h2>
-        <div id="notesGrid" class="notes-grid"></div>
-      </section>
-
-      <section id="storySection">
-        <h2>Our Story 🌹</h2>
-        <div id="timeline" class="timeline"></div>
-      </section>
-
-      <footer class="footer">Made with ❤️ by Ozair — Happy Birthday Doha</footer>
     </main>
+
+    <footer class="footer">Made with ❤️ by Ozair — Happy Birthday Doha</footer>
   </div>
 
-  <!-- Modal / Overlay -->
+  <!-- Modal overlay -->
   <div id="overlay" class="overlay hidden" aria-hidden="true">
     <div id="modalCard" class="modal-card" role="dialog" aria-modal="true">
       <button id="modalClose" class="modal-close" aria-label="Close">✕</button>
       <div id="modalBody" class="modal-body"></div>
-      <!-- prev/next for gallery modal (kept inside modal for layout) -->
+
+      <!-- next/prev for images (always present but hidden when not used) -->
       <button id="galleryPrev" class="gallery-nav prev" aria-label="Previous image">‹</button>
       <button id="galleryNext" class="gallery-nav next" aria-label="Next image">›</button>
     </div>
   </div>
 
+  <!-- audio used for section music (kept outside modals) -->
   <audio id="audioPlayer" loop preload="auto"></audio>
-  <canvas id="confettiCanvas" class="confetti"></canvas>
 
   <script src="js/script.js"></script>
 </body>
