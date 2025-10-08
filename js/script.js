@@ -740,5 +740,38 @@ function openBirthdayStory() {
   birthdayModal.querySelector(".close-modal").addEventListener("click", () => birthdayModal.remove());
 }
 
+// 🌸 OUR STORY SECTION 🌸
+
+// Select elements
+const openStoryBtn = document.getElementById('openStory');
+const modal = document.getElementById('overlay');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+const audioPlayer = document.getElementById('audioPlayer');
+
+// Function to open modal with Our Story content
+openStoryBtn.addEventListener('click', () => {
+  const storyTemplate = document.getElementById('ourStoryTemplate');
+  if (storyTemplate) {
+    const clone = storyTemplate.content.cloneNode(true);
+    modalBody.innerHTML = ''; // clear previous modal
+    modalBody.appendChild(clone);
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+
+    // Set and play story music
+    audioPlayer.src = 'music/music8.mp3';
+    audioPlayer.volume = 0.5;
+    audioPlayer.play().catch(() => {});
+  }
+});
+
+// Function to close modal
+modalClose.addEventListener('click', () => {
+  modal.classList.add('hidden');
+  modal.setAttribute('aria-hidden', 'true');
+  audioPlayer.pause();
+  audioPlayer.currentTime = 0;
+});
 
 /* ---------- End of file ---------- */
