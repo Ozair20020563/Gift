@@ -77,3 +77,28 @@ h1#heroTitle{font-size:30px;margin:6px 0 8px}
   .gallery-nav{font-size:20px;padding:10px}
   .modal-body{font-size:15px}
 }
+/* our story section */
+.animated-bg h2, .animated-bg h3 {
+  text-align: center;
+  color: #ff6b81;
+}
+
+.animated-bg p {
+  margin-bottom: 12px;
+  color: #051428;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.animated-bg hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  margin: 16px 0;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.8;
+}
