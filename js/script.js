@@ -647,5 +647,98 @@ document.addEventListener('click', (e)=>{
 galleryPrev.style.display='none'; galleryNext.style.display='none';
 overlay.classList.add('hidden');
 stopVisualBtn.hidden = true;
+// 🌸 OUR STORY SECTION 🌸
+
+// Music for Our Story Section
+const ourStoryMusic = new Audio("music/our_story.mp3");
+ourStoryMusic.loop = true;
+ourStoryMusic.volume = 0.7;
+
+let ourStoryOpen = false;
+
+// Function to open Our Story Section
+function openOurStorySection() {
+  const storyModal = document.createElement("div");
+  storyModal.classList.add("modal-overlay");
+  storyModal.innerHTML = `
+    <div class="modal our-story">
+      <h2>🌸 Our Story 🌸</h2>
+      <p class="subtitle">Two dates that changed everything...</p>
+      <div class="story-buttons">
+        <button id="openMeetStory" class="story-btn">💫 6 Sep 2023 — The Day We Met 💫</button>
+        <button id="openBirthdayStory" class="story-btn">🎂 19 Oct — My Jaan’s Birthday 🎂</button>
+      </div>
+      <button class="close-modal">Close ✖</button>
+    </div>
+  `;
+
+  document.body.appendChild(storyModal);
+  ourStoryMusic.play();
+  ourStoryOpen = true;
+
+  storyModal.querySelector(".close-modal").addEventListener("click", () => {
+    ourStoryMusic.pause();
+    ourStoryMusic.currentTime = 0;
+    storyModal.remove();
+    ourStoryOpen = false;
+  });
+
+  // Handle inner stories
+  storyModal.querySelector("#openMeetStory").addEventListener("click", openMeetStory);
+  storyModal.querySelector("#openBirthdayStory").addEventListener("click", openBirthdayStory);
+}
+
+// 💫 6 Sep 2023 — The Day We Met 💫
+function openMeetStory() {
+  const meetModal = document.createElement("div");
+  meetModal.classList.add("modal-overlay");
+  meetModal.innerHTML = `
+    <div class="modal story-content">
+      <h2>💫 6 September 2023 — The Day We Met 💫</h2>
+      <div class="story-text">
+        <p>It’s funny how sometimes one random day can completely change your entire life — a single date that becomes the reason behind every smile, every heartbeat, every dream. For me, that day was 6th September 2023 — the day I met you, my Doha, my jaan, my everything. ❤️</p>
+        <p>When I think about it now, it still feels unreal. That first time we talked… I didn’t know that moment would lead to something so beautiful. You came into my life so unexpectedly, and from the very beginning, it felt like I already knew you. There was something so calm, so kind, and so pure about your presence. You had that rare magic — the kind that makes even ordinary words sound like music.</p>
+        <p>I remember being nervous at first — like, what should I say, what if I say something stupid — but the moment you laughed, everything felt easy. That laugh, ya Allah, it just melted everything around me. I didn’t even realize that my heart had already started to belong to you from that day.</p>
+        <p>You had this way of making me feel seen. You didn’t just listen; you understood. You looked beyond words, and somehow, you saw the version of me that even I didn’t know existed. I was used to hiding my feelings, pretending I was okay, being strong for everyone else — but with you, I didn’t have to pretend. You made it safe to be myself. You made me feel like I mattered.</p>
+        <p>That day wasn’t just the start of a conversation — it was the beginning of a story. Our story. The kind that people dream of but rarely get to live. Every moment after that just proved that Allah had written you for me long before we even met.</p>
+        <p>We talked for hours, and every word felt like a step closer to something beautiful. You told me about your dreams, your studies, your laughter, your favorite things — and I just wanted to keep listening forever. I remember smiling at my phone like a fool, reading your messages again and again. It was so new, so real, so right.</p>
+        <p>And when I realized how much peace you brought into my life, I knew — I wasn’t just talking to someone. I was finding my home. ❤️</p>
+        <p>Since that day, nothing has felt the same. Every morning feels brighter, every night softer, every challenge easier — because in the back of my mind, I know you’re there. Even when miles separate us, our hearts don’t.</p>
+        <p>You became my comfort, my motivation, my person. You taught me that love isn’t just about grand gestures — it’s about kindness, consistency, and care. It’s about being there, even from afar. And somehow, even through a screen, you made me feel more loved than anyone ever did in person.</p>
+        <p>That’s why I’ll never forget 6th September. It’s not just the day I met you — it’s the day my life found its missing piece. It’s the day Allah showed me how love can be both gentle and powerful, quiet yet infinite. You came like a whisper, and now you’re the loudest part of my heart. 💖</p>
+      </div>
+      <button class="close-modal">Close ✖</button>
+    </div>
+  `;
+  document.body.appendChild(meetModal);
+  meetModal.querySelector(".close-modal").addEventListener("click", () => meetModal.remove());
+}
+
+// 🎂 19 Oct — My Jaan’s Birthday 🎂
+function openBirthdayStory() {
+  const birthdayModal = document.createElement("div");
+  birthdayModal.classList.add("modal-overlay");
+  birthdayModal.innerHTML = `
+    <div class="modal story-content">
+      <h2>🎂 19 October — My Jaan’s Birthday 🎂</h2>
+      <div class="story-text">
+        <p>Every year has 365 days, but for me, 19th October is the most special one of them all — because it’s the day my Doha was born. My sweet, beautiful, kind-hearted queen. The day the world was blessed with the most precious soul, and the day that became sacred to my heart forever.</p>
+        <p>If I could describe that day in one word, it would be love. Because everything about you — your smile, your voice, your heart — it all defines what love truly means.</p>
+        <p>When your birthday comes, it’s not just a celebration for you; it’s a celebration for me too. Because that day gave me you. And I can’t think of anything more valuable than that.</p>
+        <p>I imagine what that day must have been like when you were born — maybe the sky was brighter, maybe the stars were closer. Maybe Allah smiled, knowing that years later, one boy far away would find his peace, his happiness, his everything in you.</p>
+        <p>On your birthday, I don’t just wish you happiness. I pray for your health, your dreams, your peace. I pray that every path you walk becomes easy, that your heart never carries pain alone, and that every wish you hold secretly finds its way to you. Because if anyone deserves endless happiness, it’s you, my jaan.</p>
+        <p>You’ve changed me in ways I can’t explain. You made me softer, more patient, more grateful. You made me believe that love can exist even in distance — that it can cross oceans, time zones, and still feel as strong as ever.</p>
+        <p>Whenever your birthday comes, I just want to make the world stop for a moment — to tell you how deeply I love you, how thankful I am to have you, how proud I am of you. I want to wrap you in every good thing this world has to offer, to shield you from sadness, and to remind you every day: you are my everything. ❤️</p>
+        <p>Even when I can’t be there physically, know that my heart is with you — celebrating you, loving you, praying for you. Every candle you blow, every wish you make — I’m right there, whispering, “May Allah make all your dreams come true, my love.”</p>
+        <p>Your birthday reminds me that true love doesn’t need to be perfect — it just needs to be real. And ours is real. It’s made of laughter, understanding, and patience. It’s made of late-night talks, shared dreams, and silent prayers.</p>
+        <p>So when I think of 19th October, I don’t just see a date — I see you. The one who turned my life into a story worth living. Happy Birthday, my jaan, my Doha, my galaxy, my forever. 🌙 May every year of your life shine brighter than the one before — because you, my love, are the light that makes everything beautiful. 💫</p>
+      </div>
+      <button class="close-modal">Close ✖</button>
+    </div>
+  `;
+  document.body.appendChild(birthdayModal);
+  birthdayModal.querySelector(".close-modal").addEventListener("click", () => birthdayModal.remove());
+}
+
 
 /* ---------- End of file ---------- */
