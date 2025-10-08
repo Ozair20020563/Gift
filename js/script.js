@@ -773,5 +773,42 @@ modalClose.addEventListener('click', () => {
   audioPlayer.pause();
   audioPlayer.currentTime = 0;
 });
+// 🌸 FIXED — OUR STORY SECTION 🌸
+document.addEventListener('DOMContentLoaded', () => {
+  const openStoryBtn = document.getElementById('openStory');
+  const overlay = document.getElementById('overlay');
+  const modalBody = document.getElementById('modalBody');
+  const modalClose = document.getElementById('modalClose');
+  const audioPlayer = document.getElementById('audioPlayer');
+  
+  if (openStoryBtn) {
+    openStoryBtn.addEventListener('click', () => {
+      const storyTemplate = document.getElementById('ourStoryTemplate');
+      if (storyTemplate) {
+        const clone = storyTemplate.content.cloneNode(true);
+        modalBody.innerHTML = ''; 
+        modalBody.appendChild(clone);
+        overlay.classList.remove('hidden');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        // play background story music
+        audioPlayer.src = 'music/music8.mp3';
+        audioPlayer.volume = 0.6;
+        audioPlayer.play().catch(() => {});
+      } else {
+        console.warn("Our Story template not found!");
+      }
+    });
+  }
+
+  if (modalClose) {
+    modalClose.addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+    });
+  }
+});
 
 /* ---------- End of file ---------- */
