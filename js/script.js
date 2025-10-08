@@ -650,7 +650,7 @@ stopVisualBtn.hidden = true;
 // 🌸 OUR STORY SECTION 🌸
 
 // Music for Our Story Section
-const ourStoryMusic = new Audio("music/our_story.mp3");
+const ourStoryMusic = new Audio("music/music4.mp3");
 ourStoryMusic.loop = true;
 ourStoryMusic.volume = 0.7;
 
