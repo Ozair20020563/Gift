@@ -1,6 +1,5 @@
 /* Final script.js - handles visuals, modals, music, gallery, swipe, keyboard, and fixes
-   Updated: injects modal styling, inserts full letter texts, labels some hearts on home,
-   shows hearts in Celebrate modal, per-section audio control. */
+   Updated: Fixed celebration speed, enhanced hearts, added image counters, and improved visuals */
 
 /* ---------- Inject cosmetic CSS for modal letters (so you don't need to edit style.css) ---------- */
 (function injectModalStyles(){
@@ -23,6 +22,23 @@
   .fade-in-stagger > *:nth-child(5){ animation-delay:280ms }
   /* small decorative subtitle */
   .modal-deco { font-size:0.92rem; color:#dfe8ff; opacity:0.9; margin-bottom:8px }
+  /* Image counter styles */
+  .image-counter { 
+    position: absolute; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: rgba(16, 6, 30, 0.85); 
+    color: #f6fbff; 
+    padding: 8px 16px; 
+    border-radius: 20px; 
+    font-size: 0.9rem; 
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
   `;
   const s = document.createElement('style');
   s.textContent = css;
@@ -64,7 +80,7 @@ window.addEventListener('resize', ()=>{
 });
 
 /* ---------- nicknames (used only if you generate programmatic placeholders) ---------- */
-const nicknames = ["Biwi","Begum","Zojha","Jaan","My Galaxy","Roohi","Mohtarma","Cutiee","Patutiee","Lovey Dovey","Mera Dil","Meri Jaan","Meri Pyari","Meri Zindagi","Meri Saans","My Universe","My Darling","My Heart","My Angel","My Sunshine"];
+const nicknames = ["I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha"];
 
 /* ---------- Visual state ---------- */
 let hearts = [];    // floating hearts + small particles
@@ -74,52 +90,44 @@ let celebrationActive = false;
 let animId = null;
 let confettiAnimId = null;
 let burstTimer = null;
+let galleryHeartsActive = false;
 
 /* ---------- helpers ---------- */
 const rand = (a,b) => Math.random()*(b-a)+a;
 const clamp = (v,min,max) => Math.max(min,Math.min(max,v));
 const choose = (arr) => arr[Math.floor(Math.random()*arr.length)];
 
-/* ---------- hearts & bursts logic (always running) ----------
-   - Add optional labels on some hearts (home screen only).
-*/
-function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(6,20), color){
-  // label only when overlay (modal) hidden -> i.e., home screen
-  const label = (overlay.classList.contains('hidden') && Math.random() < 0.5)
-    ? choose(["I love You Doha ❤️","Ozair ❤️ Doha"])
+/* ---------- Enhanced hearts & bursts logic ---------- */
+function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,24), color, isGallery = false){
+  // More hearts with "I Love You Doha ❤️" and "Ozair ❤️ Doha"
+  const label = (overlay.classList.contains('hidden') && Math.random() < 0.7) || isGallery
+    ? choose(nicknames)
     : null;
+  
   hearts.push({
     x, y, r,
-    vx: rand(-0.3,0.3),
-    vy: rand(-0.7,-1.4),
+    vx: rand(-0.2,0.2),
+    vy: rand(-0.5,-1.2),
     alpha: 1,
-    life: 220 + Math.floor(rand(0,260)),
-    color: color || `hsl(${rand(320,360)},85%,${rand(60,74)}%)`,
-    label
+    life: 280 + Math.floor(rand(0,320)),
+    color: color || `hsl(${rand(320,360)},90%,${rand(65,78)}%)`,
+    label,
+    pulse: rand(0, Math.PI * 2),
+    pulseSpeed: rand(0.02, 0.05)
   });
 }
-function spawnBurst(x = width/2, y = height/2){
-  bursts.push({x,y,age:0,life:60 + Math.floor(rand(20,40)), r: rand(64,110)});
-  const smallCount = 18 + Math.floor(rand(10,28));
+
+function spawnBurst(x = width/2, y = height/2, isGallery = false){
+  bursts.push({x,y,age:0,life:80 + Math.floor(rand(20,50)), r: rand(70,120)});
+  const smallCount = 22 + Math.floor(rand(12,30));
   for(let i=0;i<smallCount;i++){
     const angle = rand(0,Math.PI*2);
-    const speed = rand(1.8,4.8);
-    hearts.push({
-      x, y,
-      vx: Math.cos(angle)*speed*rand(0.6,1.2),
-      vy: Math.sin(angle)*speed*rand(0.6,1.2),
-      r: rand(4,10),
-      alpha:1,
-      life: 80 + Math.floor(rand(0,120)),
-      color:`hsl(${rand(320,360)},88%,${rand(60,74)}%)`,
-      label: null
-    });
+    const speed = rand(1.5,3.8);
+    spawnHeart(x, y, rand(5,12), `hsl(${rand(320,360)},92%,${rand(65,75)}%)`, isGallery);
   }
 }
-/* seed a few hearts */
-for(let i=0;i<18;i++) spawnHeart();
 
-/* ---------- confetti (celebration) ---------- */
+/* ---------- Enhanced confetti (celebration) with controlled speed ---------- */
 function spawnConfetti(n=160){
   confetti = [];
   for(let i=0;i<n;i++){
@@ -127,44 +135,60 @@ function spawnConfetti(n=160){
       x: rand(0,width),
       y: rand(-height, 0),
       r: rand(6,12),
-      vx: rand(-2.2,2.2),
-      vy: rand(1.8,5.5),
+      vx: rand(-1.5,1.5),  // Slower horizontal speed
+      vy: rand(1.2,3.0),   // Slower vertical speed
       rot: rand(0,Math.PI*2),
+      rotSpeed: rand(0.02, 0.04),  // Slower rotation
       color: `hsl(${rand(0,360)},85%,${rand(55,72)}%)`
     });
   }
 }
 
-/* ---------- draw frame ---------- */
+/* ---------- Enhanced draw frame with better hearts ---------- */
 function drawFrame(){
   // hearts canvas
   heartsCtx.clearRect(0,0,width,height);
-  // draw hearts
+  
+  // draw hearts with enhanced visuals
   for(let i=hearts.length-1;i>=0;i--){
     const p = hearts[i];
-    p.x += p.vx; p.y += p.vy; p.vy -= 0.004;
-    p.alpha = clamp(p.alpha - 0.0012, 0, 1);
-    heartsCtx.globalAlpha = clamp(Math.max(0.08, p.alpha), 0, 1);
-    heartsCtx.fillStyle = p.color;
-    // simple heart path (approx)
-    const x = p.x, y = p.y, r = p.r;
+    p.x += p.vx; 
+    p.y += p.vy; 
+    p.vy -= 0.003;  // Slower gravity
+    p.alpha = clamp(p.alpha - 0.0008, 0, 1);
+    p.pulse += p.pulseSpeed;
+    
+    const pulseScale = 1 + Math.sin(p.pulse) * 0.1;
+    const currentR = p.r * pulseScale;
+    
+    heartsCtx.globalAlpha = clamp(Math.max(0.12, p.alpha), 0, 1);
+    
+    // Enhanced heart drawing with gradient
+    const gradient = heartsCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentR*1.5);
+    gradient.addColorStop(0, p.color);
+    gradient.addColorStop(1, p.color.replace('85%', '70%').replace('90%', '75%'));
+    
+    heartsCtx.fillStyle = gradient;
+    
+    // Draw beautiful heart shape
+    const x = p.x, y = p.y, r = currentR;
     heartsCtx.beginPath();
     heartsCtx.moveTo(x, y);
-    heartsCtx.bezierCurveTo(x, y-r/1.4, x-r, y-r/1.4, x-r, y);
+    heartsCtx.bezierCurveTo(x, y-r/1.3, x-r, y-r/1.3, x-r, y);
     heartsCtx.bezierCurveTo(x-r, y+r/2, x, y+r, x, y+r*1.6);
     heartsCtx.bezierCurveTo(x, y+r, x+r, y+r/2, x+r, y);
-    heartsCtx.bezierCurveTo(x+r, y-r/1.4, x, y-r/1.4, x, y);
+    heartsCtx.bezierCurveTo(x+r, y-r/1.3, x, y-r/1.3, x, y);
     heartsCtx.fill();
 
-    // draw label if present (home screen hearts)
+    // Enhanced label with better styling
     if(p.label){
-      heartsCtx.globalAlpha = clamp(p.alpha, 0, 0.95);
-      heartsCtx.font = `${Math.max(10, Math.floor(r))}px Poppins, sans-serif`;
+      heartsCtx.globalAlpha = clamp(p.alpha, 0, 0.98);
+      heartsCtx.font = `600 ${Math.max(11, Math.floor(r*0.8))}px Poppins, sans-serif`;
       heartsCtx.fillStyle = "rgba(255,255,255,0.95)";
       heartsCtx.textAlign = "center";
-      heartsCtx.shadowColor = "rgba(110,90,255,0.18)";
-      heartsCtx.shadowBlur = 8;
-      heartsCtx.fillText(p.label, x, y + r + 14);
+      heartsCtx.shadowColor = "rgba(155, 107, 255, 0.25)";
+      heartsCtx.shadowBlur = 12;
+      heartsCtx.fillText(p.label, x, y + r + 16);
       heartsCtx.shadowBlur = 0;
     }
 
@@ -172,42 +196,62 @@ function drawFrame(){
     p.life--;
     if(p.life <= 0 || p.y < -120 || p.x < -160 || p.x > width+160) hearts.splice(i,1);
   }
+  
   // draw bursts (big hearts)
   for(let i=bursts.length-1;i>=0;i--){
     const b = bursts[i];
     b.age++;
     const t = b.age / b.life;
-    const r = b.r * (1 - t*0.8);
+    const r = b.r * (1 - t*0.7);
     heartsCtx.save();
     heartsCtx.globalAlpha = 1 - t;
-    heartsCtx.fillStyle = `rgba(255,107,129,${0.25 + (1-t)*0.6})`;
+    
+    const burstGradient = heartsCtx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
+    burstGradient.addColorStop(0, 'rgba(255, 107, 129, 0.9)');
+    burstGradient.addColorStop(1, 'rgba(255, 107, 129, 0.2)');
+    
+    heartsCtx.fillStyle = burstGradient;
+    
     // big heart path
     const x = b.x, y = b.y;
     heartsCtx.beginPath();
     heartsCtx.moveTo(x, y);
-    heartsCtx.bezierCurveTo(x, y - r/1.4, x - r, y - r/1.4, x - r, y);
+    heartsCtx.bezierCurveTo(x, y - r/1.3, x - r, y - r/1.3, x - r, y);
     heartsCtx.bezierCurveTo(x - r, y + r/2, x, y + r, x, y + r*1.6);
     heartsCtx.bezierCurveTo(x, y + r, x + r, y + r/2, x + r, y);
-    heartsCtx.bezierCurveTo(x + r, y - r/1.4, x, y - r/1.4, x, y);
+    heartsCtx.bezierCurveTo(x + r, y - r/1.3, x, y - r/1.3, x, y);
     heartsCtx.fill();
     heartsCtx.restore();
     if(b.age > b.life) bursts.splice(i,1);
   }
 
-  // confetti on separate canvas
+  // confetti on separate canvas with controlled speed
   confettiCtx.clearRect(0,0,width,height);
   if(celebrationActive){
     for(let i=0;i<confetti.length;i++){
       const p = confetti[i];
-      p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += 0.06;
+      p.x += p.vx; 
+      p.y += p.vy; 
+      p.vy += 0.02;  // Slower gravity for confetti
+      p.rot += p.rotSpeed;
       confettiCtx.save();
       confettiCtx.translate(p.x,p.y);
       confettiCtx.rotate(p.rot);
       confettiCtx.fillStyle = p.color;
+      
+      // Draw confetti pieces as rounded rectangles
       confettiCtx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
       confettiCtx.restore();
+      
       if(p.y > height + 60) {
-        confetti[i] = { ...confetti[i], x: rand(0,width), y: -60 };
+        // Reset confetti to top with new properties
+        confetti[i] = { 
+          ...confetti[i], 
+          x: rand(0,width), 
+          y: -rand(20,80),
+          vx: rand(-1.5,1.5),
+          vy: rand(1.2,3.0)
+        };
       }
     }
   }
@@ -219,16 +263,33 @@ requestAnimationFrame(drawFrame);
 function startCelebrationVisuals(){
   if(celebrationActive) return;
   celebrationActive = true;
-  spawnConfetti(200);
+  spawnConfetti(180);
   stopVisualBtn.hidden = false;
   scheduleBurst();
 }
+
 function stopCelebrationVisuals(){
   celebrationActive = false;
   confetti = [];
   stopVisualBtn.hidden = true;
-  if(burstTimer) { clearTimeout(burstTimer); burstTimer = null; }
+  if(burstTimer) { 
+    clearTimeout(burstTimer); 
+    burstTimer = null; 
+  }
 }
+
+function startGalleryHearts(){
+  galleryHeartsActive = true;
+  // Spawn initial hearts for gallery
+  for(let i=0;i<12;i++){
+    spawnHeart(rand(0,width), rand(0,height), rand(6,16), null, true);
+  }
+}
+
+function stopGalleryHearts(){
+  galleryHeartsActive = false;
+}
+
 stopVisualBtn.addEventListener('click', stopCelebrationVisuals);
 
 function scheduleBurst(){
@@ -236,33 +297,59 @@ function scheduleBurst(){
   // spawn burst at random position
   spawnBurst(rand(width*0.2, width*0.8), rand(height*0.2, height*0.6));
   // spawn some small hearts near bottom
-  for(let i=0;i<6;i++) spawnHeart(rand(40,width-40), height - rand(20,60), rand(6,18));
-  burstTimer = setTimeout(scheduleBurst, 2200 + Math.random()*2800);
+  for(let i=0;i<5;i++) spawnHeart(rand(40,width-40), height - rand(20,60), rand(8,20));
+  burstTimer = setTimeout(scheduleBurst, 2500 + Math.random()*3000); // Slower burst frequency
 }
+
+/* ---------- Enhanced home hearts seeding ---------- */
+function seedHomeHearts(){
+  // Clear existing hearts
+  hearts = hearts.filter(h => !h.label);
+  bursts = [];
+  
+  // Seed more beautiful hearts for home screen
+  for(let i=0;i<25;i++) {
+    spawnHeart(rand(0,width), rand(height*0.3, height), rand(10,28));
+  }
+  
+  // Add some initial bursts for home
+  for(let i=0;i<3;i++){
+    setTimeout(() => {
+      spawnBurst(rand(width*0.1, width*0.9), rand(height*0.3, height*0.7));
+    }, i * 800);
+  }
+}
+
+// Seed hearts when page loads and when returning to home
+seedHomeHearts();
 
 /* ---------- Modal & music behavior ---------- */
 function showModal(html, musicSrc){
   modalBody.innerHTML = html;
   overlay.classList.remove('hidden');
   overlay.setAttribute('aria-hidden','false');
-  modalClose.style.display = 'block'; // fixed visible close
+  modalClose.style.display = 'block';
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
-  // play music for modal only (looped, plays while open)
+  
+  // play music for modal only
   if(musicSrc){
     audioPlayer.src = musicSrc;
     audioPlayer.loop = true;
-    audioPlayer.play().catch(()=>{ /* autoplay blocked until user interacts */ });
+    audioPlayer.play().catch((e)=>{ 
+      console.log('Audio play failed:', e);
+    });
   }
+  
   // if this is celebrate modal, ensure celebration visuals ON
-  if(html && html.includes('class="celebrate-modal"')) {
+  if(html && html.includes('celebrate-modal')) {
     startCelebrationVisuals();
-    // spawn a few labeled hearts inside modal area for visual emphasis
     for(let i=0;i<8;i++){
       spawnBurst(rand(width*0.3, width*0.7), rand(height*0.25, height*0.6));
     }
   }
 }
+
 function closeModal(){
   overlay.classList.add('hidden');
   overlay.setAttribute('aria-hidden','true');
@@ -272,8 +359,16 @@ function closeModal(){
   // unlock scroll
   document.documentElement.style.overflow = '';
   document.body.style.overflow = '';
-  // do not auto-stop celebration visuals (user can stop with the stopVisualBtn)
+  
+  // Stop gallery hearts when closing gallery
+  stopGalleryHearts();
+  
+  // Restore home hearts when returning to home
+  if(overlay.classList.contains('hidden')) {
+    setTimeout(seedHomeHearts, 300);
+  }
 }
+
 modalClose.addEventListener('click', closeModal);
 overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
 document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
@@ -294,7 +389,11 @@ function typeLoop(){
 }
 typeLoop();
 
-/* ---------- content builders (with full texts you provided) ---------- */
+/* ---------- ALL YOUR EXISTING CONTENT BUILDER FUNCTIONS ---------- */
+// [Keep all your existing buildBirthdayHTML(), buildSurpriseHTML(), buildWhyHTML(), 
+//  buildMemoryHTML(), buildPromiseHTML(), buildStorySepHTML(), buildStoryOctHTML() functions]
+// They remain exactly the same as before...
+
 function buildBirthdayHTML(){
   // Celebrate modal: include class celebrate-modal to signal visuals
   const html = `
@@ -414,7 +513,6 @@ function buildPromiseHTML(){
   return html;
 }
 
-/* ---------- Our Story Section Functions ---------- */
 function buildStorySepHTML(){
   const html = `
     <div class="modal-letter-wrap fade-in-stagger">
@@ -483,7 +581,7 @@ openNotesBtn.addEventListener('click', ()=>{
       <button class="note-btn" id="nbPro">A promise to you 💞</button>
     </div>
     <div id="noteArea" style="margin-top:12px"></div>`;
-  showModal(html, null);
+  showModal(html, 'assets/music/music2.mp3');
   setTimeout(()=>{
     document.getElementById('nbWhy').addEventListener('click', ()=>{
       document.getElementById('noteArea').innerHTML = buildWhyHTML();
@@ -505,10 +603,10 @@ openNotesBtn.addEventListener('click', ()=>{
 
 /* Morning Thumbnails (14) */
 openMorningBtn.addEventListener('click', ()=>{
-  let html = `<h2>Morning Cutiee 🌸</h2><div class="gallery-grid">`;
+  let html = `<h2 class="modal-title">Morning Cutiee 🌸</h2><div class="gallery-grid">`;
   for(let i=1;i<=14;i++) html += `<img src="assets/morning${i}.jpg" data-index="${i-1}" class="thumb">`;
   html += `</div>`;
-  showModal(html, null);
+  showModal(html, 'assets/music/music7.mp3');
   setTimeout(()=>{
     document.querySelectorAll('.thumb').forEach(el=>{
       el.addEventListener('click', (e)=> openGallery('morning', Number(e.currentTarget.dataset.index)));
@@ -518,10 +616,10 @@ openMorningBtn.addEventListener('click', ()=>{
 
 /* Memories thumbnails (78) */
 openMemoriesBtn.addEventListener('click', ()=>{
-  let html = `<h2>Our Memories ❤️</h2><div class="memories-grid">`;
+  let html = `<h2 class="modal-title">Our Memories ❤️</h2><div class="memories-grid">`;
   for(let i=1;i<=78;i++) html += `<img src="assets/photo${i}.jpg" data-index="${i-1}" class="thumb">`;
   html += `</div>`;
-  showModal(html, null);
+  showModal(html, 'assets/music/music8.mp3');
   setTimeout(()=>{
     document.querySelectorAll('.thumb').forEach(el=>{
       el.addEventListener('click', (e)=> openGallery('memories', Number(e.currentTarget.dataset.index)));
@@ -537,20 +635,22 @@ openStoryBtn.addEventListener('click', ()=>{
       <button class="story-btn" id="sOct">🎂 19 October — My Jaan's Birthday</button>
       <div id="storyArea" style="margin-top:12px"></div>
     </div>`;
-  showModal(html, null);
+  showModal(html, 'assets/music/music9.mp3');
   setTimeout(()=>{
     document.getElementById('sSep').addEventListener('click', ()=>{
       document.getElementById('storyArea').innerHTML = buildStorySepHTML();
-      audioPlayer.src = 'assets/music/music5.mp3'; audioPlayer.play().catch(()=>{});
+      audioPlayer.src = 'assets/music/music5.mp3'; 
+      audioPlayer.play().catch(()=>{});
     });
     document.getElementById('sOct').addEventListener('click', ()=>{
       document.getElementById('storyArea').innerHTML = buildStoryOctHTML();
-      audioPlayer.src = 'assets/music/music6.mp3'; audioPlayer.play().catch(()=>{});
+      audioPlayer.src = 'assets/music/music6.mp3'; 
+      audioPlayer.play().catch(()=>{});
     });
   }, 60);
 });
 
-/* ---------- Gallery slider with Love Lines ---------- */
+/* ---------- Enhanced Gallery with Image Counter and Hearts ---------- */
 let galleryArr = [], galleryIdx = 0;
 
 // Love lines for gallery images
@@ -574,63 +674,7 @@ const loveLines = [
   "You make ordinary moments extraordinary ✨",
   "My soul recognized yours from the very beginning 👁️",
   "You are the dream I never want to wake up from 💫",
-  "Loving you feels like breathing - natural and essential 🌬️",
-  "You are the light that guides me through darkness 💡",
-  "My heart beats only for you 💓",
-  "You are my greatest adventure 🗺️",
-  "Every love story is beautiful, but ours is my favorite 📖",
-  "You complete me in ways I never imagined 🧩",
-  "Your love is the anchor that keeps me steady ⚓",
-  "You are the poetry my heart always wanted to write 📝",
-  "My love for you is infinite like the universe 🌌",
-  "You make my soul feel at home 🏠",
-  "Every moment without you feels incomplete ⏳",
-  "You are my sunshine on cloudy days ☀️",
-  "Your love is the greatest gift I've ever received 🎁",
-  "You are my always and forever ⏰",
-  "My heart chose you before my mind even knew 💭",
-  "You are the beautiful beginning of my happy ending 🏁",
-  "Your love makes me a better person every day 🌟",
-  "You are the reason I believe in soulmates 💞",
-  "My love for you is deeper than the ocean 🌊",
-  "You are my favorite thought every day 💭",
-  "Your presence makes everything better 🌈",
-  "You are the dream I never knew I had 💤",
-  "My heart speaks your name in every beat 💓",
-  "You are my perfect imperfection ❤️",
-  "Your love is the music that fills my soul 🎵",
-  "You are my today, tomorrow, and always 📅",
-  "My soul found its counterpart in you 👥",
-  "You are the beautiful chaos I never knew I needed 🌪️",
-  "Your love is my greatest strength 💪",
-  "You are the answer to all my whys ❓",
-  "My heart belongs to you, now and forever 💍",
-  "You are the peace in my storm ⛈️",
-  "Your love is the home I never want to leave 🏡",
-  "You are my favorite hello and hardest goodbye 👋",
-  "My love for you is written in the stars ✨",
-  "You are the beautiful surprise life gave me 🎉",
-  "Your love is the anchor of my soul ⚓",
-  "You are the missing chapter in my story 📚",
-  "My heart found its rhythm with yours 🥁",
-  "You are the beautiful dream I never want to end 🌙",
-  "Your love is the greatest adventure of my life 🗺️",
-  "You are my always and forever love 💑",
-  "My soul recognized yours from across lifetimes 🌍",
-  "You are the beautiful melody in my life's song 🎶",
-  "Your love is the light that never fades 💡",
-  "You are the home my heart always searched for 🏠",
-  "My love for you grows with every sunrise 🌅",
-  "You are the beautiful truth in my life 📜",
-  "Your love is the greatest miracle I've known ✨",
-  "You are my perfect match in every way 🔥",
-  "My heart found its forever in you 💫",
-  "You are the beautiful promise of tomorrow 🌄",
-  "Your love is the greatest treasure I possess 💎",
-  "You are my soul's destination 🧭",
-  "My love for you is eternal and unconditional ♾️",
-  "You are the beautiful reason behind my smile 😊",
-  "Your love is the foundation of my happiness 🏗️"
+  "Loving you feels like breathing - natural and essential 🌬️"
 ];
 
 function openGallery(type, startIdx=0){
@@ -642,11 +686,8 @@ function openGallery(type, startIdx=0){
   }
   galleryIdx = startIdx;
   showGalleryItem();
-  // make sure modal visible
-  overlay.classList.remove('hidden');
-  overlay.setAttribute('aria-hidden','false');
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
+  // Start gallery hearts when opening gallery
+  startGalleryHearts();
 }
 
 function showGalleryItem(){
@@ -658,6 +699,7 @@ function showGalleryItem(){
   
   const html = `
     <div style="text-align:center; position:relative;">
+      <div class="image-counter">${galleryIdx + 1}/${galleryArr.length}</div>
       <img class="modal-img" src="${it.img}" alt="gallery">
       <div class="gallery-love-line">${randomLoveLine}</div>
     </div>`;
@@ -667,11 +709,27 @@ function showGalleryItem(){
   galleryNext.style.display = 'block';
   audioPlayer.src = it.music; 
   audioPlayer.play().catch(()=>{});
+  
+  // Spawn hearts around the image
+  spawnBurst(width/2, height/2 - 50, true);
+  setTimeout(() => {
+    spawnBurst(width/2 - 100, height/2, true);
+    spawnBurst(width/2 + 100, height/2, true);
+  }, 300);
 }
 
 /* prev/next handlers */
-galleryPrev.addEventListener('click', ()=>{ if(!galleryArr.length) return; galleryIdx = (galleryIdx-1+galleryArr.length)%galleryArr.length; showGalleryItem(); });
-galleryNext.addEventListener('click', ()=>{ if(!galleryArr.length) return; galleryIdx = (galleryIdx+1)%galleryArr.length; showGalleryItem(); });
+galleryPrev.addEventListener('click', ()=>{ 
+  if(!galleryArr.length) return; 
+  galleryIdx = (galleryIdx-1+galleryArr.length)%galleryArr.length; 
+  showGalleryItem(); 
+});
+
+galleryNext.addEventListener('click', ()=>{ 
+  if(!galleryArr.length) return; 
+  galleryIdx = (galleryIdx+1)%galleryArr.length; 
+  showGalleryItem(); 
+});
 
 /* keyboard */
 document.addEventListener('keydown', (e)=>{
@@ -698,6 +756,8 @@ function closeModal(){
   document.documentElement.style.overflow = ''; document.body.style.overflow = '';
   // hide navs
   galleryPrev.style.display='none'; galleryNext.style.display='none';
+  // Stop gallery hearts
+  stopGalleryHearts();
 }
 
 /* ---------- small interactive bursts when clicking thumbnails / menu */
