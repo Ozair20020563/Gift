@@ -1,28 +1,23 @@
-/* Final script.js - handles visuals, modals, music, gallery, swipe, keyboard, and fixes
-   Updated: Fixed celebration glitter speed, enhanced hearts, added image counters, and improved visuals */
+/* Final script.js - handles visuals, modals, music, gallery, swipe, keyboard, and fixes */
+/* Updated: Fixed celebration speed, enhanced hearts, added image counters, and improved visuals */
 
-/* ---------- Inject cosmetic CSS for modal letters (so you don't need to edit style.css) ---------- */
+/* ---------- Inject cosmetic CSS for modal letters ---------- */
 (function injectModalStyles(){
   const css = `
-  /* Modal letter styles injected by script.js */
   .modal-letter-wrap { padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(16,6,30,0.98), rgba(10,4,24,0.98)); color: #f6fbff; box-shadow: 0 20px 60px rgba(3,6,20,0.7); }
   .modal-title { font-size:1.55rem; font-weight:800; margin:0 0 8px; background: linear-gradient(90deg,#9b6bff,#ff7aa2); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 12px rgba(120,90,255,0.16); }
   .modal-sub { font-size:0.98rem; margin-bottom:14px; opacity:0.95; color:#f7eefc; }
   .modal-letter { line-height:1.85; font-size:15.5px; color: #f4f7ff; }
   .modal-letter p { margin: 12px 0; }
   .modal-sign { margin-top:18px; font-weight:700; font-size:1rem; color:#ffeef6; }
-  .modal-quote { display:block; margin-top:10px; font-style:italic; color:#e9e9ff; opacity:0.95; }
   .fade-in-stagger > * { opacity:0; transform: translateY(8px); animation: fadeInUp 360ms ease forwards; }
   @keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
-  /* stagger delays */
   .fade-in-stagger > *:nth-child(1){ animation-delay:0ms }
   .fade-in-stagger > *:nth-child(2){ animation-delay:70ms }
   .fade-in-stagger > *:nth-child(3){ animation-delay:140ms }
   .fade-in-stagger > *:nth-child(4){ animation-delay:210ms }
   .fade-in-stagger > *:nth-child(5){ animation-delay:280ms }
-  /* small decorative subtitle */
   .modal-deco { font-size:0.92rem; color:#dfe8ff; opacity:0.9; margin-bottom:8px }
-  /* Image counter styles */
   .image-counter { 
     position: absolute; 
     top: 20px; 
@@ -79,16 +74,14 @@ window.addEventListener('resize', ()=>{
   confettiCanvas.width = width; confettiCanvas.height = height;
 });
 
-/* ---------- nicknames (used only if you generate programmatic placeholders) ---------- */
+/* ---------- nicknames ---------- */
 const nicknames = ["I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha","I Love You Doha ❤️","Ozair ❤️ Doha"];
 
 /* ---------- Visual state ---------- */
-let hearts = [];    // floating hearts + small particles
-let bursts = [];    // periodic big heart pop -> spawns small hearts
-let confetti = [];  // confetti pieces (for celebrate)
+let hearts = [];
+let bursts = [];
+let confetti = [];
 let celebrationActive = false;
-let animId = null;
-let confettiAnimId = null;
 let burstTimer = null;
 let galleryHeartsActive = false;
 
@@ -99,7 +92,6 @@ const choose = (arr) => arr[Math.floor(Math.random()*arr.length)];
 
 /* ---------- Enhanced hearts & bursts logic ---------- */
 function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,24), color, isGallery = false, isBurstHeart = false){
-  // Only show labels on main hearts, NOT on burst hearts
   const label = (!isBurstHeart && ((overlay.classList.contains('hidden') && Math.random() < 0.7) || isGallery))
     ? choose(nicknames)
     : null;
@@ -114,7 +106,7 @@ function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,
     label,
     pulse: rand(0, Math.PI * 2),
     pulseSpeed: rand(0.02, 0.05),
-    isBurstHeart: isBurstHeart // Mark burst hearts to prevent labels
+    isBurstHeart: isBurstHeart
   });
 }
 
@@ -122,14 +114,11 @@ function spawnBurst(x = width/2, y = height/2, isGallery = false){
   bursts.push({x,y,age:0,life:80 + Math.floor(rand(20,50)), r: rand(70,120)});
   const smallCount = 22 + Math.floor(rand(12,30));
   for(let i=0;i<smallCount;i++){
-    const angle = rand(0,Math.PI*2);
-    const speed = rand(1.5,3.8);
-    // Burst hearts should NOT have labels - set isBurstHeart to true
     spawnHeart(x, y, rand(5,12), `hsl(${rand(320,360)},92%,${rand(65,75)}%)`, isGallery, true);
   }
 }
 
-/* ---------- Enhanced confetti (celebration) with controlled speed ---------- */
+/* ---------- Enhanced confetti with controlled speed ---------- */
 function spawnConfetti(n=160){
   confetti = [];
   for(let i=0;i<n;i++){
@@ -137,26 +126,24 @@ function spawnConfetti(n=160){
       x: rand(0,width),
       y: rand(-height, 0),
       r: rand(6,12),
-      vx: rand(-1.5,1.5),  // Slower horizontal speed
-      vy: rand(1.2,3.0),   // Slower vertical speed
+      vx: rand(-1.5,1.5),
+      vy: rand(1.2,3.0),
       rot: rand(0,Math.PI*2),
-      rotSpeed: rand(0.02, 0.04),  // Slower rotation
+      rotSpeed: rand(0.02, 0.04),
       color: `hsl(${rand(0,360)},85%,${rand(55,72)}%)`
     });
   }
 }
 
-/* ---------- Enhanced draw frame with better hearts ---------- */
+/* ---------- Enhanced draw frame ---------- */
 function drawFrame(){
-  // hearts canvas
   heartsCtx.clearRect(0,0,width,height);
   
-  // draw hearts with enhanced visuals
   for(let i=hearts.length-1;i>=0;i--){
     const p = hearts[i];
     p.x += p.vx; 
     p.y += p.vy; 
-    p.vy -= 0.003;  // Slower gravity
+    p.vy -= 0.003;
     p.alpha = clamp(p.alpha - 0.0008, 0, 1);
     p.pulse += p.pulseSpeed;
     
@@ -165,14 +152,12 @@ function drawFrame(){
     
     heartsCtx.globalAlpha = clamp(Math.max(0.12, p.alpha), 0, 1);
     
-    // Enhanced heart drawing with gradient
     const gradient = heartsCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentR*1.5);
     gradient.addColorStop(0, p.color);
     gradient.addColorStop(1, p.color.replace('85%', '70%').replace('90%', '75%'));
     
     heartsCtx.fillStyle = gradient;
     
-    // Draw beautiful heart shape
     const x = p.x, y = p.y, r = currentR;
     heartsCtx.beginPath();
     heartsCtx.moveTo(x, y);
@@ -182,7 +167,6 @@ function drawFrame(){
     heartsCtx.bezierCurveTo(x+r, y-r/1.3, x, y-r/1.3, x, y);
     heartsCtx.fill();
 
-    // Enhanced label with better styling - ONLY show if not a burst heart
     if(p.label && !p.isBurstHeart){
       heartsCtx.globalAlpha = clamp(p.alpha, 0, 0.98);
       heartsCtx.font = `600 ${Math.max(11, Math.floor(r*0.8))}px Poppins, sans-serif`;
@@ -199,7 +183,6 @@ function drawFrame(){
     if(p.life <= 0 || p.y < -120 || p.x < -160 || p.x > width+160) hearts.splice(i,1);
   }
   
-  // draw bursts (big hearts)
   for(let i=bursts.length-1;i>=0;i--){
     const b = bursts[i];
     b.age++;
@@ -214,7 +197,6 @@ function drawFrame(){
     
     heartsCtx.fillStyle = burstGradient;
     
-    // big heart path
     const x = b.x, y = b.y;
     heartsCtx.beginPath();
     heartsCtx.moveTo(x, y);
@@ -227,26 +209,22 @@ function drawFrame(){
     if(b.age > b.life) bursts.splice(i,1);
   }
 
-  // confetti on separate canvas with controlled speed
   confettiCtx.clearRect(0,0,width,height);
   if(celebrationActive){
     for(let i=0;i<confetti.length;i++){
       const p = confetti[i];
       p.x += p.vx; 
       p.y += p.vy; 
-      p.vy += 0.02;  // Slower gravity for confetti
+      p.vy += 0.02;
       p.rot += p.rotSpeed;
       confettiCtx.save();
       confettiCtx.translate(p.x,p.y);
       confettiCtx.rotate(p.rot);
       confettiCtx.fillStyle = p.color;
-      
-      // Draw confetti pieces as rounded rectangles
       confettiCtx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
       confettiCtx.restore();
       
       if(p.y > height + 60) {
-        // Reset confetti to top with new properties
         confetti[i] = { 
           ...confetti[i], 
           x: rand(0,width), 
@@ -282,7 +260,6 @@ function stopCelebrationVisuals(){
 
 function startGalleryHearts(){
   galleryHeartsActive = true;
-  // Spawn initial hearts for gallery
   for(let i=0;i<12;i++){
     spawnHeart(rand(0,width), rand(0,height), rand(6,16), null, true);
   }
@@ -296,25 +273,20 @@ stopVisualBtn.addEventListener('click', stopCelebrationVisuals);
 
 function scheduleBurst(){
   if(!celebrationActive) return;
-  // spawn burst at random position
   spawnBurst(rand(width*0.2, width*0.8), rand(height*0.2, height*0.6));
-  // spawn some small hearts near bottom
   for(let i=0;i<5;i++) spawnHeart(rand(40,width-40), height - rand(20,60), rand(8,20));
-  burstTimer = setTimeout(scheduleBurst, 2500 + Math.random()*3000); // Slower burst frequency
+  burstTimer = setTimeout(scheduleBurst, 2500 + Math.random()*3000);
 }
 
 /* ---------- Enhanced home hearts seeding ---------- */
 function seedHomeHearts(){
-  // Clear existing hearts
   hearts = hearts.filter(h => !h.label);
   bursts = [];
   
-  // Seed more beautiful hearts for home screen
   for(let i=0;i<25;i++) {
     spawnHeart(rand(0,width), rand(height*0.3, height), rand(10,28));
   }
   
-  // Add some initial bursts for home
   for(let i=0;i<3;i++){
     setTimeout(() => {
       spawnBurst(rand(width*0.1, width*0.9), rand(height*0.3, height*0.7));
@@ -322,7 +294,6 @@ function seedHomeHearts(){
   }
 }
 
-// Seed hearts when page loads and when returning to home
 seedHomeHearts();
 
 /* ---------- Modal & music behavior ---------- */
@@ -334,7 +305,6 @@ function showModal(html, musicSrc){
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
   
-  // play music for modal only
   if(musicSrc){
     audioPlayer.src = musicSrc;
     audioPlayer.loop = true;
@@ -343,7 +313,6 @@ function showModal(html, musicSrc){
     });
   }
   
-  // if this is celebrate modal, ensure celebration visuals ON
   if(html && html.includes('celebrate-modal')) {
     startCelebrationVisuals();
     for(let i=0;i<8;i++){
@@ -355,17 +324,13 @@ function showModal(html, musicSrc){
 function closeModal(){
   overlay.classList.add('hidden');
   overlay.setAttribute('aria-hidden','true');
-  // stop modal music
   audioPlayer.pause();
   audioPlayer.currentTime = 0;
-  // unlock scroll
   document.documentElement.style.overflow = '';
   document.body.style.overflow = '';
   
-  // Stop gallery hearts when closing gallery
   stopGalleryHearts();
   
-  // Restore home hearts when returning to home
   if(overlay.classList.contains('hidden')) {
     setTimeout(seedHomeHearts, 300);
   }
@@ -391,13 +356,8 @@ function typeLoop(){
 }
 typeLoop();
 
-/* ---------- ALL YOUR EXISTING CONTENT BUILDER FUNCTIONS ---------- */
-// [Keep all your existing buildBirthdayHTML(), buildSurpriseHTML(), buildWhyHTML(), 
-//  buildMemoryHTML(), buildPromiseHTML(), buildStorySepHTML(), buildStoryOctHTML() functions]
-// They remain exactly the same as before...
-
+/* ---------- content builders ---------- */
 function buildBirthdayHTML(){
-  // Celebrate modal: include class celebrate-modal to signal visuals
   const html = `
     <div class="modal-letter-wrap celebrate-modal fade-in-stagger">
       <h2 class="modal-title">Happy Birthday, My Love — Duda 💖</h2>
@@ -498,10 +458,6 @@ function buildPromiseHTML(){
     <div class="modal-letter-wrap fade-in-stagger">
       <h2 class="modal-title">A Promise to You 💞</h2>
       <div class="modal-deco">My vows, my heart, my forever.</div>
-      const html = `
-    <div class="modal-letter-wrap fade-in-stagger">
-      <h2 class="modal-title">A Promise to You 💞</h2>
-      <div class="modal-deco">My vows, my heart, my forever.</div>
       <div class="modal-letter">
         <p>My Beloved Duda,</p>
         <p>Today, I make a promise to you — a promise not of fleeting words, but of eternal commitment, unwavering love, and endless support. I promise to be by your side in every moment, in every challenge, in every joy, and in every sorrow. I promise to love you deeply, sincerely, and endlessly, with a heart that beats only for you.</p>
@@ -565,20 +521,15 @@ function buildStoryOctHTML(){
 }
 
 /* ---------- Button handlers ---------- */
-
-/* Celebrate — start visuals (persistent) and open modal with music (stops when closed) */
 celebrateBtn.addEventListener('click', ()=>{
-  // ensure celebration visuals begin and modal receives celebrate content
   startCelebrationVisuals();
   showModal(buildBirthdayHTML(), 'assets/music/happy_birthday.mp3');
 });
 
-/* Surprise */
 openSurpriseBtn.addEventListener('click', ()=>{
   showModal(buildSurpriseHTML(), 'assets/music/music1.mp3');
 });
 
-/* Love Notes - show three options; each plays own music while open */
 openNotesBtn.addEventListener('click', ()=>{
   const html = `<h2 class="modal-title">Love Notes</h2>
     <div style="margin-top:8px">
@@ -607,7 +558,6 @@ openNotesBtn.addEventListener('click', ()=>{
   }, 60);
 });
 
-/* Morning Thumbnails (14) */
 openMorningBtn.addEventListener('click', ()=>{
   let html = `<h2 class="modal-title">Morning Cutiee 🌸</h2><div class="gallery-grid">`;
   for(let i=1;i<=14;i++) html += `<img src="assets/morning${i}.jpg" data-index="${i-1}" class="thumb">`;
@@ -620,7 +570,6 @@ openMorningBtn.addEventListener('click', ()=>{
   }, 60);
 });
 
-/* Memories thumbnails (78) */
 openMemoriesBtn.addEventListener('click', ()=>{
   let html = `<h2 class="modal-title">Our Memories ❤️</h2><div class="memories-grid">`;
   for(let i=1;i<=78;i++) html += `<img src="assets/photo${i}.jpg" data-index="${i-1}" class="thumb">`;
@@ -633,7 +582,6 @@ openMemoriesBtn.addEventListener('click', ()=>{
   }, 80);
 });
 
-/* Story */
 openStoryBtn.addEventListener('click', ()=>{
   const html = `<h2 class="modal-title">Our Story</h2>
     <div style="margin-top:8px">
@@ -659,7 +607,6 @@ openStoryBtn.addEventListener('click', ()=>{
 /* ---------- Enhanced Gallery with Image Counter and Hearts ---------- */
 let galleryArr = [], galleryIdx = 0;
 
-// Love lines for gallery images
 const loveLines = [
   "Your smile is my favorite sight in the world 🌟",
   "Every moment with you feels like a beautiful dream 💖",
@@ -692,7 +639,6 @@ function openGallery(type, startIdx=0){
   }
   galleryIdx = startIdx;
   showGalleryItem();
-  // Start gallery hearts when opening gallery
   startGalleryHearts();
 }
 
@@ -700,7 +646,6 @@ function showGalleryItem(){
   if(!galleryArr.length) return;
   const it = galleryArr[galleryIdx];
   
-  // Get random love line
   const randomLoveLine = loveLines[Math.floor(Math.random() * loveLines.length)];
   
   const html = `
@@ -716,7 +661,6 @@ function showGalleryItem(){
   audioPlayer.src = it.music; 
   audioPlayer.play().catch(()=>{});
   
-  // Spawn hearts around the image (burst hearts without labels)
   spawnBurst(width/2, height/2 - 50, true);
   setTimeout(() => {
     spawnBurst(width/2 - 100, height/2, true);
@@ -724,7 +668,6 @@ function showGalleryItem(){
   }, 300);
 }
 
-/* prev/next handlers */
 galleryPrev.addEventListener('click', ()=>{ 
   if(!galleryArr.length) return; 
   galleryIdx = (galleryIdx-1+galleryArr.length)%galleryArr.length; 
@@ -737,36 +680,19 @@ galleryNext.addEventListener('click', ()=>{
   showGalleryItem(); 
 });
 
-/* keyboard */
 document.addEventListener('keydown', (e)=>{
   if(overlay.classList.contains('hidden')) return;
   if(e.key === 'ArrowLeft') galleryPrev.click();
   if(e.key === 'ArrowRight') galleryNext.click();
 });
 
-/* swipe support on modalBody */
 let tStartX = 0, tEndX = 0;
 modalBody.addEventListener('touchstart', (e)=>{ if(e.touches && e.touches[0]) tStartX = e.touches[0].clientX; }, {passive:true});
 modalBody.addEventListener('touchend', (e)=>{ if(e.changedTouches && e.changedTouches[0]) { tEndX = e.changedTouches[0].clientX; handleSwipe(); } }, {passive:true});
 function handleSwipe(){ const d = tEndX - tStartX; if(Math.abs(d) < 50) return; if(d < 0) galleryNext.click(); else galleryPrev.click(); }
 
-/* hide gallery nav on overlay hide */
 overlay.addEventListener('transitionend', ()=>{ if(overlay.classList.contains('hidden')){ galleryPrev.style.display='none'; galleryNext.style.display='none'; } });
 
-/* ensure close stops modal music */
-modalClose.addEventListener('click', ()=>{ audioPlayer.pause(); audioPlayer.currentTime = 0; closeModal(); });
-overlay.addEventListener('click', (e)=>{ if(e.target === overlay){ audioPlayer.pause(); audioPlayer.currentTime = 0; closeModal(); } });
-
-function closeModal(){
-  overlay.classList.add('hidden'); overlay.setAttribute('aria-hidden','true');
-  document.documentElement.style.overflow = ''; document.body.style.overflow = '';
-  // hide navs
-  galleryPrev.style.display='none'; galleryNext.style.display='none';
-  // Stop gallery hearts
-  stopGalleryHearts();
-}
-
-/* ---------- small interactive bursts when clicking thumbnails / menu */
 document.addEventListener('click', (e)=>{
   if(e.target && (e.target.matches('.thumb') || e.target.matches('.menu-btn'))){
     const r = e.target.getBoundingClientRect();
@@ -778,5 +704,3 @@ document.addEventListener('click', (e)=>{
 galleryPrev.style.display='none'; galleryNext.style.display='none';
 overlay.classList.add('hidden');
 stopVisualBtn.hidden = true;
-
-/* ---------- End of file ---------- */
