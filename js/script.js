@@ -1,5 +1,5 @@
 /* Final script.js - handles visuals, modals, music, gallery, swipe, keyboard, and fixes
-   Updated: Fixed celebration speed, enhanced hearts, added image counters, and improved visuals */
+   Updated: Fixed celebration glitter speed, enhanced hearts, added image counters, and improved visuals */
 
 /* ---------- Inject cosmetic CSS for modal letters (so you don't need to edit style.css) ---------- */
 (function injectModalStyles(){
@@ -98,9 +98,9 @@ const clamp = (v,min,max) => Math.max(min,Math.min(max,v));
 const choose = (arr) => arr[Math.floor(Math.random()*arr.length)];
 
 /* ---------- Enhanced hearts & bursts logic ---------- */
-function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,24), color, isGallery = false){
-  // More hearts with "I Love You Doha ❤️" and "Ozair ❤️ Doha"
-  const label = (overlay.classList.contains('hidden') && Math.random() < 0.7) || isGallery
+function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,24), color, isGallery = false, isBurstHeart = false){
+  // Only show labels on main hearts, NOT on burst hearts
+  const label = (!isBurstHeart && ((overlay.classList.contains('hidden') && Math.random() < 0.7) || isGallery))
     ? choose(nicknames)
     : null;
   
@@ -113,7 +113,8 @@ function spawnHeart(x = rand(0,width), y = rand(height*0.6, height), r = rand(8,
     color: color || `hsl(${rand(320,360)},90%,${rand(65,78)}%)`,
     label,
     pulse: rand(0, Math.PI * 2),
-    pulseSpeed: rand(0.02, 0.05)
+    pulseSpeed: rand(0.02, 0.05),
+    isBurstHeart: isBurstHeart // Mark burst hearts to prevent labels
   });
 }
 
@@ -123,7 +124,8 @@ function spawnBurst(x = width/2, y = height/2, isGallery = false){
   for(let i=0;i<smallCount;i++){
     const angle = rand(0,Math.PI*2);
     const speed = rand(1.5,3.8);
-    spawnHeart(x, y, rand(5,12), `hsl(${rand(320,360)},92%,${rand(65,75)}%)`, isGallery);
+    // Burst hearts should NOT have labels - set isBurstHeart to true
+    spawnHeart(x, y, rand(5,12), `hsl(${rand(320,360)},92%,${rand(65,75)}%)`, isGallery, true);
   }
 }
 
@@ -180,8 +182,8 @@ function drawFrame(){
     heartsCtx.bezierCurveTo(x+r, y-r/1.3, x, y-r/1.3, x, y);
     heartsCtx.fill();
 
-    // Enhanced label with better styling
-    if(p.label){
+    // Enhanced label with better styling - ONLY show if not a burst heart
+    if(p.label && !p.isBurstHeart){
       heartsCtx.globalAlpha = clamp(p.alpha, 0, 0.98);
       heartsCtx.font = `600 ${Math.max(11, Math.floor(r*0.8))}px Poppins, sans-serif`;
       heartsCtx.fillStyle = "rgba(255,255,255,0.95)";
@@ -496,6 +498,10 @@ function buildPromiseHTML(){
     <div class="modal-letter-wrap fade-in-stagger">
       <h2 class="modal-title">A Promise to You 💞</h2>
       <div class="modal-deco">My vows, my heart, my forever.</div>
+      const html = `
+    <div class="modal-letter-wrap fade-in-stagger">
+      <h2 class="modal-title">A Promise to You 💞</h2>
+      <div class="modal-deco">My vows, my heart, my forever.</div>
       <div class="modal-letter">
         <p>My Beloved Duda,</p>
         <p>Today, I make a promise to you — a promise not of fleeting words, but of eternal commitment, unwavering love, and endless support. I promise to be by your side in every moment, in every challenge, in every joy, and in every sorrow. I promise to love you deeply, sincerely, and endlessly, with a heart that beats only for you.</p>
@@ -710,7 +716,7 @@ function showGalleryItem(){
   audioPlayer.src = it.music; 
   audioPlayer.play().catch(()=>{});
   
-  // Spawn hearts around the image
+  // Spawn hearts around the image (burst hearts without labels)
   spawnBurst(width/2, height/2 - 50, true);
   setTimeout(() => {
     spawnBurst(width/2 - 100, height/2, true);
