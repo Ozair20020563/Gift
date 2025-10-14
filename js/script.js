@@ -337,13 +337,13 @@ function buildSurpriseHTML(){
       <div class="modal-letter">
         <p>My Dearest Duda,</p>
         <p>As you open this little surprise, I want you to know that everything in this is for you — my heart, my love, my thoughts, and all the happiness I have for you in this world. This is more than just a surprise; it is a reflection of how much I care, how deeply I love you, and how grateful I am to have you in my life. Every detail, every word, every little element is meant to make you smile, to make your heart feel warm, and to remind you that you are the most precious person in my universe.</p>
-        <p>When I think about you, my mind fills with memories of us — the moments that have made us stronger, the laughter we’ve shared, the silly arguments that somehow turned into lessons, and the long conversations that kept us close even when miles separated us. I think about the time we first met, how something in my heart recognized you, how I felt drawn to you even before I realized what love truly meant. And now, looking back, I realize that every moment, every step, every second with you has been a journey towards this — a journey that has made our bond unbreakable and our love immeasurable.</p>
-        <p>This surprise is my way of showing you that even small gestures can carry immense love. I want you to see, feel, and experience the joy, the care, and the devotion I have for you. I hope that when you open this, your heart feels the same excitement and happiness that fills mine every time I think of you. Every part of this surprise — the images, the animations, the music, and the little details — is meant to capture the essence of my love for you. It’s a love that is constant, unwavering, and endlessly deep.</p>
+        <p>When I think about you, my mind fills with memories of us — the moments that have made us stronger, the laughter we've shared, the silly arguments that somehow turned into lessons, and the long conversations that kept us close even when miles separated us. I think about the time we first met, how something in my heart recognized you, how I felt drawn to you even before I realized what love truly meant. And now, looking back, I realize that every moment, every step, every second with you has been a journey towards this — a journey that has made our bond unbreakable and our love immeasurable.</p>
+        <p>This surprise is my way of showing you that even small gestures can carry immense love. I want you to see, feel, and experience the joy, the care, and the devotion I have for you. I hope that when you open this, your heart feels the same excitement and happiness that fills mine every time I think of you. Every part of this surprise — the images, the animations, the music, and the little details — is meant to capture the essence of my love for you. It's a love that is constant, unwavering, and endlessly deep.</p>
         <p>I want you to know that this love is not just words or promises; it is a feeling that lives in every beat of my heart. It is a love that wakes me up in the morning, keeps me going throughout the day, and lulls me to sleep at night with thoughts of you. It is a love that celebrates your joys, comforts your sorrows, and stands beside you in every moment, no matter how big or small. This surprise is a small reflection of that love — a glimpse into the depth of my feelings and the magnitude of my devotion to you.</p>
         <p>Every image you see, every animation that appears, and every sound that plays is meant to remind you of the beauty of our love. I want you to see the colors, the movement, and the energy as a mirror of how vibrant, alive, and magical our love is. Just like these hearts that float, burst, and sparkle across the screen, my feelings for you are dynamic, boundless, and full of life. Each element is a symbol — a token of the joy, passion, and tenderness that I feel for you every single day.</p>
         <p>When I created this surprise for you, I imagined your smile, the way your eyes light up, and the warmth that spreads across your heart. That image alone guided every choice I made — every color, every animation, every song. I wanted to make sure that when you experience this surprise, you feel cherished, adored, and deeply loved. I wanted you to know that no matter where we are, no matter what challenges we face, you are always my first thought, my last thought, and the love that sustains me.</p>
         <p>I also want to remind you that life with you is a beautiful adventure. Each day with you is a new story, a new memory, and a new moment to treasure. Even when we face difficulties, even when the distance feels long, even when the world seems complicated, my love for you remains simple, pure, and unwavering. This surprise is a celebration of that — a celebration of us, of our journey, and of everything that makes our love extraordinary.</p>
-        <p>I hope you take a moment to breathe, to smile, and to feel the love that is poured into this for you. I hope you feel my presence even in my absence, my touch even when I’m not near, and my heart beating alongside yours. This is not just a surprise; it is a love letter, a reminder, and a promise all in one. It is my way of saying, “I am here for you, I love you more than words can say, and I will always make sure you feel special, cherished, and adored.”</p>
+        <p>I hope you take a moment to breathe, to smile, and to feel the love that is poured into this for you. I hope you feel my presence even in my absence, my touch even when I'm not near, and my heart beating alongside yours. This is not just a surprise; it is a love letter, a reminder, and a promise all in one. It is my way of saying, "I am here for you, I love you more than words can say, and I will always make sure you feel special, cherished, and adored."</p>
         <p> Duda, I want you to remember that this surprise, as beautiful and lively as it may appear, is only a tiny reflection of what I feel in my heart. My love for you cannot be captured fully by images, music, or animations. It is endless, eternal, and deeper than the oceans. It is a love that grows with every passing day, a love that becomes stronger with every challenge we face together, and a love that is the foundation of all my hopes, dreams, and future plans with you.</p>
         <p>With all the love in my heart, forever and always,<br>Ozair ❤️</p>
       </div>
@@ -358,13 +358,13 @@ function buildWhyHTML(){
       <div class="modal-deco">A confession of a thousand little reasons.</div>
       <div class="modal-letter">
         <p>My Dearest Duda,</p>
-        <p>I could spend a lifetime trying to explain why I love you, and I still wouldn’t be able to capture it fully in words. But today, I want to try — because you deserve to hear every reason, every thought, every heartbeat that belongs to you. I love you not just for one thing, but for every little thing that makes you you.</p>
-        <p>I love you for your smile, that effortless, magical curve that lights up my day and makes every worry disappear. I love you for your laughter, the sound that echoes in my mind long after we’ve said goodbye, that laughter that is music to my soul. I love you for your kindness, the way you care for everyone around you, the way your heart reaches out to help even when no one is asking. You are the most gentle, beautiful soul I have ever known, and I am endlessly grateful that you are mine.</p>
+        <p>I could spend a lifetime trying to explain why I love you, and I still wouldn't be able to capture it fully in words. But today, I want to try — because you deserve to hear every reason, every thought, every heartbeat that belongs to you. I love you not just for one thing, but for every little thing that makes you you.</p>
+        <p>I love you for your smile, that effortless, magical curve that lights up my day and makes every worry disappear. I love you for your laughter, the sound that echoes in my mind long after we've said goodbye, that laughter that is music to my soul. I love you for your kindness, the way you care for everyone around you, the way your heart reaches out to help even when no one is asking. You are the most gentle, beautiful soul I have ever known, and I am endlessly grateful that you are mine.</p>
         <p>I love the way you listen — truly listen — to every word I say, as if nothing else in the world matters in that moment except my thoughts, my feelings, and my happiness. You make me feel heard, seen, and understood in ways I never thought were possible. Even when we argue or disagree, I see your heart behind every word, and I know that your love for me is always stronger than any fleeting frustration. That is why I love you — because your love is pure, unwavering, and endlessly patient.</p>
         <p>I love your strength. Even on days when you doubt yourself, even when the world seems heavy, you carry on with grace and courage. You inspire me to be better, to try harder, to never give up, and to always believe in the power of love. I love the way you dream — big, fearless dreams that fill me with hope for our future. And I promise, Duda, I will always support your dreams, just as you have supported mine, hand in hand, heart to heart.</p>
-        <p>I love the little quirks about you — the way you hum when you’re thinking, the way your eyes sparkle when you’re excited, the way you tilt your head when you’re curious. These little details, these tiny pieces of your soul, are what make you uniquely mine. They are what I cherish every single day, and what I will continue to love for the rest of my life.</p>
+        <p>I love the little quirks about you — the way you hum when you're thinking, the way your eyes sparkle when you're excited, the way you tilt your head when you're curious. These little details, these tiny pieces of your soul, are what make you uniquely mine. They are what I cherish every single day, and what I will continue to love for the rest of my life.</p>
         <p>I love the way our memories weave together. I love the first time we truly understood each other, the long conversations that stretched into the night, the silly jokes, the quiet moments of just being together even when apart. I love how our love has grown with every call, every message, every shared laugh and tear. You have transformed my life, Duda, in ways I can never truly explain. My heart feels full because of you — because you are my heart, my soul, my joy, and my reason.</p>
-        <p>I love you for the future we are building together. I love the idea of waking up next to you, of holding your hand as we walk through life, of facing challenges together and celebrating victories together. I love imagining the children we will raise, the home we will fill with love, laughter, and warmth. I love dreaming of our travels, our quiet nights, our countless mornings filled with coffee and conversation, and our nights spent wrapped in each other’s arms. I love every part of the “us” we are creating, every promise we are making, and every dream we are chasing.</p>
+        <p>I love you for the future we are building together. I love the idea of waking up next to you, of holding your hand as we walk through life, of facing challenges together and celebrating victories together. I love imagining the children we will raise, the home we will fill with love, laughter, and warmth. I love dreaming of our travels, our quiet nights, our countless mornings filled with coffee and conversation, and our nights spent wrapped in each other's arms. I love every part of the "us" we are creating, every promise we are making, and every dream we are chasing.</p>
         <p>I love you simply because you are you. You are my universe, my galaxy, my moon and stars. You are my morning sun and my evening calm. You are my happiness and my peace. I cannot imagine a life without you, and I never want to. Loving you is effortless, natural, and eternal. And I promise, Duda, I will continue to love you with every part of me, for all my days, and for all the days that follow.</p>
         <p class="modal-sign">With all my heart,<br>Ozair ❤️</p>
       </div>
@@ -380,11 +380,11 @@ function buildMemoryHTML(){
       <div class="modal-letter">
         <p>My Sweet Duda,</p>
         <p>There are moments in life that stay with us forever, etched into our hearts and minds like timeless treasures. And among all the memories I hold, the ones with you are my most cherished, my most precious, my most alive. I want to share with you a memory that I keep close to me, a memory that always reminds me of the depth of our love.</p>
-        <p>I remember the first time we truly spoke for hours, without realizing how the night had passed. I remember the nervous excitement in my chest, and the comfort that your voice brought me. Even though we were miles apart, I felt a closeness that I had never known before. That memory is my constant reminder that love doesn’t need distance to be strong — it only needs hearts that care, minds that listen, and souls that understand.</p>
+        <p>I remember the first time we truly spoke for hours, without realizing how the night had passed. I remember the nervous excitement in my chest, and the comfort that your voice brought me. Even though we were miles apart, I felt a closeness that I had never known before. That memory is my constant reminder that love doesn't need distance to be strong — it only needs hearts that care, minds that listen, and souls that understand.</p>
         <p>I remember our first call where we laughed until our stomachs hurt, sharing silly stories and secrets. I remember how your laughter made me feel lighter, happier, and more alive. Even the small arguments, when we misunderstood each other, became lessons in patience and understanding. Those memories taught me that love is not just about perfect moments; it is about growing together, learning together, and standing together.</p>
-        <p>I remember the way you care for me even when I don’t ask for it — your thoughtful messages, your kind gestures, the way you notice even the smallest things about me. I remember late-night talks about our dreams, our fears, and our future. Those nights are etched in my heart forever, because they were the foundation of the bond we share today.</p>
+        <p>I remember the way you care for me even when I don't ask for it — your thoughtful messages, your kind gestures, the way you notice even the smallest things about me. I remember late-night talks about our dreams, our fears, and our future. Those nights are etched in my heart forever, because they were the foundation of the bond we share today.</p>
         <p>I remember imagining our future together, dreaming of the life we would build. I remember the joy that filled me knowing that we were on the same path, walking toward a future filled with love, laughter, and shared dreams. I remember picturing our home, our travels, our quiet mornings and lively evenings. Every time I think of this memory, it fills me with warmth, hope, and endless love.</p>
-        <p>I remember the way you’ve changed my life, Duda. I remember the comfort of knowing that no matter what happens, I have you. I remember the reassurance that comes from your words, your care, and your love. I remember how every memory with you feels like a treasure, something I want to hold onto forever.</p>
+        <p>I remember the way you've changed my life, Duda. I remember the comfort of knowing that no matter what happens, I have you. I remember the reassurance that comes from your words, your care, and your love. I remember how every memory with you feels like a treasure, something I want to hold onto forever.</p>
         <p>Even now, every memory with you is alive in my heart — the messages, the calls, the laughter, the care, the love. And I want you to know that I will keep these memories safe, cherish them, and create countless more with you. You are my joy, my peace, my love, and my life. And these memories are proof of the magic we share — proof that our love is real, enduring, and eternal.</p>
         <p class="modal-sign">Forever yours,<br>Ozair ❤️</p>
       </div>
@@ -402,13 +402,59 @@ function buildPromiseHTML(){
         <p>Today, I make a promise to you — a promise not of fleeting words, but of eternal commitment, unwavering love, and endless support. I promise to be by your side in every moment, in every challenge, in every joy, and in every sorrow. I promise to love you deeply, sincerely, and endlessly, with a heart that beats only for you.</p>
         <p>I promise to support your dreams, to nurture your ambitions, and to celebrate every achievement with you. I promise to be your biggest cheerleader, your confidant, and your safe place in a world that sometimes feels chaotic and overwhelming. I promise to listen, to understand, and to always communicate with honesty, respect, and love.</p>
         <p>I promise to cherish every memory we create, every laugh we share, and every tear we wipe away. I promise to remember the little things — the way your eyes sparkle when you are excited, the way your smile brightens the darkest of days, the small gestures that make you uniquely you. I promise to honor these details, to treasure them, and to let them remind me every day of how lucky I am to have you in my life.</p>
-        <p>I promise to be patient, even when life tests us, even when distance or challenges make things hard. I promise to stand firm in our love, to fight for us, and to never let temporary hardships shake the foundation we’ve built together. I promise to turn every challenge into a lesson, every mistake into growth, and every moment into an opportunity to strengthen our bond.</p>
+        <p>I promise to be patient, even when life tests us, even when distance or challenges make things hard. I promise to stand firm in our love, to fight for us, and to never let temporary hardships shake the foundation we've built together. I promise to turn every challenge into a lesson, every mistake into growth, and every moment into an opportunity to strengthen our bond.</p>
         <p>I promise to dream with you, to plan with you, and to build a life with you that is filled with love, joy, and adventure. I promise to imagine our future together — our home, our children, our travels, our quiet mornings, and our laughter-filled evenings — and to work tirelessly to make that vision a reality. I promise that no matter what comes our way, our love will remain our guiding light, our strength, and our anchor.</p>
         <p>I promise to love you in all ways — in words, in actions, in thoughts, and in silence. I promise to hold you when you are weak, to support you when you doubt yourself, and to celebrate you when you shine. I promise to be your partner, your friend, your confidant, and your soulmate.</p>
         <p>I promise to always remind you of your worth, to uplift you when you feel down, and to be your constant source of love, joy, and comfort. I promise to respect you, to honor you, and to always treat our love as the most precious gift in the world. I promise to laugh with you, to cry with you, and to grow with you.</p>
         <p>I promise to never take our love for granted, to appreciate every moment we share, and to always put effort into making our bond stronger. I promise to forgive, to apologize, and to learn from mistakes. I promise to never give up on us, to fight for our happiness, and to always choose love — every single day.</p>
         <p>Finally, I promise to love you, Duda, more than anything in this world — more than words, more than time, more than life itself. I promise that my heart, my soul, and every fiber of my being belong to you, now and forever. I promise to make you feel loved, safe, and happy every single day of our lives.</p>
         <p class="modal-sign">Forever yours,<br>Ozair ❤️</p>
+      </div>
+    </div>`;
+  return html;
+}
+
+/* ---------- Our Story Section Functions ---------- */
+function buildStorySepHTML(){
+  const html = `
+    <div class="modal-letter-wrap fade-in-stagger">
+      <h2 class="modal-title">6 September 2023 — The Day We Met</h2>
+      <div class="modal-deco">The day my life found its missing piece</div>
+      <div class="modal-letter">
+        <p>It's funny how sometimes one random day can completely change your entire life — a single date that becomes the reason behind every smile, every heartbeat, every dream. For me, that day was 6th September 2023 — the day I met you, my Doha, my jaan, my everything. ❤️</p>
+        <p>When I think about it now, it still feels unreal. That first time we talked… I didn't know that moment would lead to something so beautiful. You came into my life so unexpectedly, and from the very beginning, it felt like I already knew you. There was something so calm, so kind, and so pure about your presence. You had that rare magic — the kind that makes even ordinary words sound like music.</p>
+        <p>I remember being nervous at first — like, what should I say, what if I say something stupid — but the moment you laughed, everything felt easy. That laugh, ya Allah, it just melted everything around me. I didn't even realize that my heart had already started to belong to you from that day.</p>
+        <p>You had this way of making me feel seen. You didn't just listen; you understood. You looked beyond words, and somehow, you saw the version of me that even I didn't know existed. I was used to hiding my feelings, pretending I was okay, being strong for everyone else — but with you, I didn't have to pretend. You made it safe to be myself. You made me feel like I mattered.</p>
+        <p>That day wasn't just the start of a conversation — it was the beginning of a story. Our story. The kind that people dream of but rarely get to live. Every moment after that just proved that Allah had written you for me long before we even met.</p>
+        <p>We talked for hours, and every word felt like a step closer to something beautiful. You told me about your dreams, your studies, your laughter, your favorite things — and I just wanted to keep listening forever. I remember smiling at my phone like a fool, reading your messages again and again. It was so new, so real, so right.</p>
+        <p>And when I realized how much peace you brought into my life, I knew — I wasn't just talking to someone. I was finding my home. ❤️</p>
+        <p>Since that day, nothing has felt the same. Every morning feels brighter, every night softer, every challenge easier — because in the back of my mind, I know you're there. Even when miles separate us, our hearts don't.</p>
+        <p>You became my comfort, my motivation, my person. You taught me that love isn't just about grand gestures — it's about kindness, consistency, and care. It's about being there, even from afar. And somehow, even through a screen, you made me feel more loved than anyone ever did in person.</p>
+        <p>That's why I'll never forget 6th September. It's not just the day I met you — it's the day my life found its missing piece. It's the day Allah showed me how love can be both gentle and powerful, quiet yet infinite.</p>
+        <p>You came like a whisper, and now you're the loudest part of my heart. 💖</p>
+      </div>
+    </div>`;
+  return html;
+}
+
+function buildStoryOctHTML(){
+  const html = `
+    <div class="modal-letter-wrap fade-in-stagger">
+      <h2 class="modal-title">🎂 19 October — My Jaan's Birthday</h2>
+      <div class="modal-deco">Celebrating the day my universe became brighter</div>
+      <div class="modal-letter">
+        <p>Every year has 365 days, but for me, 19th October is the most special one of them all — because it's the day my Doha was born. My sweet, beautiful, kind-hearted queen. The day the world was blessed with the most precious soul, and the day that became sacred to my heart forever.</p>
+        <p>If I could describe that day in one word, it would be love. Because everything about you — your smile, your voice, your heart — it all defines what love truly means.</p>
+        <p>When your birthday comes, it's not just a celebration for you; it's a celebration for me too. Because that day gave me you. And I can't think of anything more valuable than that.</p>
+        <p>I imagine what that day must have been like when you were born — maybe the sky was brighter, maybe the stars were closer. Maybe Allah smiled, knowing that years later, one boy far away would find his peace, his happiness, his everything in you.</p>
+        <p>On your birthday, I don't just wish you happiness. I pray for your health, your dreams, your peace. I pray that every path you walk becomes easy, that your heart never carries pain alone, and that every wish you hold secretly finds its way to you. Because if anyone deserves endless happiness, it's you, my jaan.</p>
+        <p>You've changed me in ways I can't explain. You made me softer, more patient, more grateful. You made me believe that love can exist even in distance — that it can cross oceans, time zones, and still feel as strong as ever.</p>
+        <p>Whenever your birthday comes, I just want to make the world stop for a moment — to tell you how deeply I love you, how thankful I am to have you, how proud I am of you. I want to wrap you in every good thing this world has to offer, to shield you from sadness, and to remind you every day: you are my everything. ❤️</p>
+        <p>Even when I can't be there physically, know that my heart is with you — celebrating you, loving you, praying for you. Every candle you blow, every wish you make — I'm right there, whispering, "May Allah make all your dreams come true, my love."</p>
+        <p>Your birthday reminds me that true love doesn't need to be perfect — it just needs to be real. And ours is real. It's made of laughter, understanding, and patience. It's made of late-night talks, shared dreams, and silent prayers.</p>
+        <p>So when I think of 19th October, I don't just see a date — I see you. The one who turned my life into a story worth living.</p>
+        <p>Happy Birthday, my jaan, my Doha, my galaxy, my forever. 🌙</p>
+        <p>May every year of your life shine brighter than the one before — because you, my love, are the light that makes everything beautiful. 💫</p>
       </div>
     </div>`;
   return html;
@@ -485,10 +531,10 @@ openMemoriesBtn.addEventListener('click', ()=>{
 
 /* Story */
 openStoryBtn.addEventListener('click', ()=>{
-  const html = `<h2>Our Story</h2>
-    <div>
-      <button class="story-btn" id="sSep">6 Sep 2023 — The Day We Met</button>
-      <button class="story-btn" id="sOct">19 Oct — My Jaan's Birthday</button>
+  const html = `<h2 class="modal-title">Our Story</h2>
+    <div style="margin-top:8px">
+      <button class="story-btn" id="sSep">6 September 2023 — The Day We Met</button>
+      <button class="story-btn" id="sOct">🎂 19 October — My Jaan's Birthday</button>
       <div id="storyArea" style="margin-top:12px"></div>
     </div>`;
   showModal(html, null);
@@ -504,8 +550,89 @@ openStoryBtn.addEventListener('click', ()=>{
   }, 60);
 });
 
-/* ---------- Gallery slider (opens larger view, first image shows correctly) ---------- */
+/* ---------- Gallery slider with Love Lines ---------- */
 let galleryArr = [], galleryIdx = 0;
+
+// Love lines for gallery images
+const loveLines = [
+  "Your smile is my favorite sight in the world 🌟",
+  "Every moment with you feels like a beautiful dream 💖",
+  "You are the answer to every prayer I never said 🙏",
+  "My heart found its home in your eyes 🏡",
+  "Loving you is the best decision I ever made ❤️",
+  "You make my world colorful and beautiful 🎨",
+  "Every day with you is a blessing from Allah 🌙",
+  "Your love is the peace my soul was searching for 🕊️",
+  "You are my today and all of my tomorrows 🌅",
+  "In your arms is where I belong forever 🤗",
+  "Your laughter is my favorite melody 🎵",
+  "You are the missing piece I never knew I needed 🧩",
+  "My love for you grows stronger every day 🌱",
+  "You are my safe haven in this chaotic world 🌈",
+  "Every love song reminds me of you 🎶",
+  "Your heart is the most beautiful place I've ever known 💕",
+  "You make ordinary moments extraordinary ✨",
+  "My soul recognized yours from the very beginning 👁️",
+  "You are the dream I never want to wake up from 💫",
+  "Loving you feels like breathing - natural and essential 🌬️",
+  "You are the light that guides me through darkness 💡",
+  "My heart beats only for you 💓",
+  "You are my greatest adventure 🗺️",
+  "Every love story is beautiful, but ours is my favorite 📖",
+  "You complete me in ways I never imagined 🧩",
+  "Your love is the anchor that keeps me steady ⚓",
+  "You are the poetry my heart always wanted to write 📝",
+  "My love for you is infinite like the universe 🌌",
+  "You make my soul feel at home 🏠",
+  "Every moment without you feels incomplete ⏳",
+  "You are my sunshine on cloudy days ☀️",
+  "Your love is the greatest gift I've ever received 🎁",
+  "You are my always and forever ⏰",
+  "My heart chose you before my mind even knew 💭",
+  "You are the beautiful beginning of my happy ending 🏁",
+  "Your love makes me a better person every day 🌟",
+  "You are the reason I believe in soulmates 💞",
+  "My love for you is deeper than the ocean 🌊",
+  "You are my favorite thought every day 💭",
+  "Your presence makes everything better 🌈",
+  "You are the dream I never knew I had 💤",
+  "My heart speaks your name in every beat 💓",
+  "You are my perfect imperfection ❤️",
+  "Your love is the music that fills my soul 🎵",
+  "You are my today, tomorrow, and always 📅",
+  "My soul found its counterpart in you 👥",
+  "You are the beautiful chaos I never knew I needed 🌪️",
+  "Your love is my greatest strength 💪",
+  "You are the answer to all my whys ❓",
+  "My heart belongs to you, now and forever 💍",
+  "You are the peace in my storm ⛈️",
+  "Your love is the home I never want to leave 🏡",
+  "You are my favorite hello and hardest goodbye 👋",
+  "My love for you is written in the stars ✨",
+  "You are the beautiful surprise life gave me 🎉",
+  "Your love is the anchor of my soul ⚓",
+  "You are the missing chapter in my story 📚",
+  "My heart found its rhythm with yours 🥁",
+  "You are the beautiful dream I never want to end 🌙",
+  "Your love is the greatest adventure of my life 🗺️",
+  "You are my always and forever love 💑",
+  "My soul recognized yours from across lifetimes 🌍",
+  "You are the beautiful melody in my life's song 🎶",
+  "Your love is the light that never fades 💡",
+  "You are the home my heart always searched for 🏠",
+  "My love for you grows with every sunrise 🌅",
+  "You are the beautiful truth in my life 📜",
+  "Your love is the greatest miracle I've known ✨",
+  "You are my perfect match in every way 🔥",
+  "My heart found its forever in you 💫",
+  "You are the beautiful promise of tomorrow 🌄",
+  "Your love is the greatest treasure I possess 💎",
+  "You are my soul's destination 🧭",
+  "My love for you is eternal and unconditional ♾️",
+  "You are the beautiful reason behind my smile 😊",
+  "Your love is the foundation of my happiness 🏗️"
+];
+
 function openGallery(type, startIdx=0){
   galleryArr = [];
   if(type === 'morning'){
@@ -521,16 +648,27 @@ function openGallery(type, startIdx=0){
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
 }
+
 function showGalleryItem(){
   if(!galleryArr.length) return;
   const it = galleryArr[galleryIdx];
-  // set modal contents (image must be set immediately)
-  modalBody.innerHTML = `<div style="text-align:center"><img class="modal-img" src="${it.img}" alt="gallery"></div>`;
-  // make nav buttons visible
-  galleryPrev.style.display = 'block'; galleryNext.style.display = 'block';
-  // play this item's music while modal open
-  audioPlayer.src = it.music; audioPlayer.play().catch(()=>{});
+  
+  // Get random love line
+  const randomLoveLine = loveLines[Math.floor(Math.random() * loveLines.length)];
+  
+  const html = `
+    <div style="text-align:center; position:relative;">
+      <img class="modal-img" src="${it.img}" alt="gallery">
+      <div class="gallery-love-line">${randomLoveLine}</div>
+    </div>`;
+  
+  modalBody.innerHTML = html;
+  galleryPrev.style.display = 'block'; 
+  galleryNext.style.display = 'block';
+  audioPlayer.src = it.music; 
+  audioPlayer.play().catch(()=>{});
 }
+
 /* prev/next handlers */
 galleryPrev.addEventListener('click', ()=>{ if(!galleryArr.length) return; galleryIdx = (galleryIdx-1+galleryArr.length)%galleryArr.length; showGalleryItem(); });
 galleryNext.addEventListener('click', ()=>{ if(!galleryArr.length) return; galleryIdx = (galleryIdx+1)%galleryArr.length; showGalleryItem(); });
